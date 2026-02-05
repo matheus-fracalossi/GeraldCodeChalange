@@ -36,10 +36,23 @@ type TransactionFilter = "all" | "income" | "expense";
 ```
 
 ## Patterns
-**Components:** `React.FC<Props>` functional components
-**Hooks:** `useTransactions`, `useDebounce`, `useTransactionFilters`
+**FUNCTIONAL PROGRAMMING MANDATORY:** Always use functional programming paradigms
+**Components:** Arrow function components only - `const Component = () => {}`
+**Hooks:** Arrow functions - `const useTransactions = () => {}`, `const useDebounce = () => {}`
+**Functions:** Always use arrow functions - `const handlePress = () => {}`
+**Methods:** Arrow functions for all methods and callbacks
 **Naming:** PascalCase components, camelCase files/hooks, SCREAMING_SNAKE_CASE constants
 **i18n:** Always use `useTranslation` hook for all text content - no hardcoded strings
+
+## Functional Programming Rules
+**MANDATORY - NO EXCEPTIONS:**
+- Arrow functions for ALL functions: `const myFunction = () => {}`
+- No `function` keyword allowed
+- Immutable data patterns with spread operators
+- Pure functions without side effects where possible
+- Higher-order functions for data transformations
+- Array methods: `map`, `filter`, `reduce`, `find` over loops
+- Functional composition over imperative code
 
 ## UI Framework
 **Gluestack:** Box (layout), Text (typography), Button (actions), Input (search), FlatList (lists)
