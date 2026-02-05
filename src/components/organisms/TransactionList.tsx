@@ -42,7 +42,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
     ({ section }: { section: TransactionSection }) => {
       if (section.isYearHeader) {
         return (
-          <Box className="py-2 bg-white">
+          <Box className="py-2">
             <Text className="text-xl font-bold text-typography-900">
               {section.year}
             </Text>
@@ -51,7 +51,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       }
       
       return (
-        <Box className="py-2 bg-white">
+        <Box className="py-2">
           <Text className="text-xs font-semibold text-typography-500 tracking-wide">
             {t('transactions.sectionDate', { date: section.date })}
           </Text>

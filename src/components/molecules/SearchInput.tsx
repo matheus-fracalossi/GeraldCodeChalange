@@ -15,7 +15,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     <Input
       variant="outline"
       size="lg"
-      className="bg-white border-background-200 rounded-xl"
+      className="border-background-200 rounded-xl"
     >
       <InputSlot className="pl-3">
         <Text className="text-typography-400">🔍</Text>

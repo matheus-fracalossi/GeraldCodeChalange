@@ -30,11 +30,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           variant={isActive ? 'solid' : 'outline'}
           action={isActive ? 'primary' : 'secondary'}
           size="sm"
-          className={`rounded-full px-5 mr-2 ${
-            isActive
-              ? 'bg-primary-500'
-              : 'bg-white border-background-300'
-          }`}
+          className={`rounded-full px-5 mr-2`}
           onPress={() => onFilterChange(item.key)}
           accessibilityLabel={t(item.labelKey)}
           accessibilityRole="button"

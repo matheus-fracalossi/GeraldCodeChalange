@@ -15,12 +15,11 @@ import { TransactionFilter } from '@/types/transaction';
 import ErrorState from './src/components/molecules/ErrorState';
 
 const App = () => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const isDarkMode = colorScheme === 'dark';
+
 
   return (
-    <GluestackUIProvider mode={colorScheme}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <GluestackUIProvider>
+      <StatusBar barStyle='dark-content' />
       <SafeAreaProvider>
         <TransactionScreen />
       </SafeAreaProvider>
@@ -33,7 +32,7 @@ const TransactionScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<TransactionFilter>('all');
 
-  const { transactions, fetchState, error, loadMore, refresh } = useTransactions({type: filterType === 'all' ? undefined : filterType, merchant: searchQuery});
+  const { transactions, fetchState, error, loadMore, refresh, fetchTransactions } = useTransactions({type: filterType === 'all' ? undefined : filterType, merchant: searchQuery});
 
   const handleSearchChange = useCallback((text: string) => {
     setSearchQuery(text);
@@ -44,8 +43,8 @@ const TransactionScreen = () => {
   }, []);
 
   const handleRetry = useCallback(() => {
-    refresh();
-  }, [refresh]);
+      fetchTransactions(1, 'initial-fetch');
+  }, [fetchTransactions]);
 
   return (
     <KeyboardAvoidingView 
@@ -53,7 +52,7 @@ const TransactionScreen = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <Box
-        className="flex-1 bg-white px-4"
+        className="flex-1 px-4"
         style={{ paddingTop: safeAreaInsets.top }}
       >
         {error ? (

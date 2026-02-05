@@ -11,6 +11,7 @@ interface UseTransactionsReturn {
   loadMore: () => void;
   refresh: () => void;
   searchWithDebounce: () => void;
+  fetchTransactions: (page: number, fetchState: FetchState) => void;
 }
 
 export const useTransactions = ({type, merchant}: {type?: Transaction['type'], merchant?: Transaction["merchant"]}): UseTransactionsReturn => {
@@ -39,6 +40,8 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
       nextPageRef.current = response.next;    
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch transactions');
+      console.log(err);
+      
     } finally {
       setFetchState(null);
     }
@@ -92,6 +95,7 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
     error,
     loadMore,
     refresh,
-    searchWithDebounce
+    searchWithDebounce,
+    fetchTransactions,
   };
 };

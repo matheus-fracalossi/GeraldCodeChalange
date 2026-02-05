@@ -4,7 +4,7 @@ import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
 
 const TransactionItemSkeleton: React.FC = () => {
   return (
-    <Box className="flex-row py-4">
+    <Box className="flex-row py-4 px-1">
       <Skeleton variant="rounded" className="w-12 h-12 mr-3"  />
 
       <Box className="flex-1 gap-1">

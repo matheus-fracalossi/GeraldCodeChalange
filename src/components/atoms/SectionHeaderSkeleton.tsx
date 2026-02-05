@@ -10,7 +10,7 @@ const SectionHeaderSkeleton: React.FC<SectionHeaderSkeletonProps> = ({
   isYearHeader = false 
 }) => {
   return (
-    <Box className="py-2 bg-white">
+    <Box className="py-2">
       {isYearHeader ? (
         <SkeletonText _lines={1} className="h-6 w-16"  />
       ) : (

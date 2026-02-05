@@ -7,7 +7,7 @@ import SectionHeaderSkeleton from '../atoms/SectionHeaderSkeleton';
 const TransactionListSkeleton: React.FC = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <Box className="px-4">
+      <Box>
         <SectionHeaderSkeleton isYearHeader={true} />
         <SectionHeaderSkeleton />
         <TransactionItemSkeleton />
@@ -15,13 +15,13 @@ const TransactionListSkeleton: React.FC = () => {
         <TransactionItemSkeleton />
       </Box>
 
-      <Box className="px-4">
+      <Box>
         <SectionHeaderSkeleton />
         <TransactionItemSkeleton />
         <TransactionItemSkeleton />
       </Box>
 
-      <Box className="px-4">
+      <Box>
         <SectionHeaderSkeleton />
         <TransactionItemSkeleton />
         <TransactionItemSkeleton />
@@ -29,7 +29,7 @@ const TransactionListSkeleton: React.FC = () => {
         <TransactionItemSkeleton />
       </Box>
 
-      <Box className="px-4">
+      <Box>
         <SectionHeaderSkeleton />
         <TransactionItemSkeleton />
         <TransactionItemSkeleton />
