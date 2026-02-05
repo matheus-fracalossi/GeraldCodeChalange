@@ -33,7 +33,7 @@ const TransactionScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<TransactionFilter>('all');
 
-  const { transactions, fetchState, error, hasNextPage, loadMore, refresh } = useTransactions({type: filterType === 'all' ? undefined : filterType});
+  const { transactions, fetchState, error, loadMore, refresh } = useTransactions({type: filterType === 'all' ? undefined : filterType});
 
   const handleSearchChange = useCallback((text: string) => {
     setSearchQuery(text);

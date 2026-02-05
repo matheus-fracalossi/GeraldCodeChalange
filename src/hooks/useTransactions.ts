@@ -8,7 +8,6 @@ interface UseTransactionsReturn {
   transactions: Transaction[];
   fetchState: FetchState;
   error: string | null;
-  hasNextPage: boolean;
   loadMore: () => void;
   refresh: () => void;
 }
@@ -61,7 +60,6 @@ export const useTransactions = ({type}: {type?: Transaction['type']}): UseTransa
     transactions,
     fetchState,
     error,
-    hasNextPage,
     loadMore,
     refresh
   };

@@ -80,7 +80,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   const renderFooter = useCallback(() => {
     if (loadingMore) {
       return (
-        <Box className="px-4 py-4">
+        <Box>
           <TransactionItemSkeleton />
           <TransactionItemSkeleton />
         </Box>
