@@ -117,6 +117,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       onEndReachedThreshold={0.1}
       stickySectionHeadersEnabled={false}
       showsVerticalScrollIndicator={false}
+      keyboardDismissMode='interactive'
       contentContainerStyle={{ paddingBottom: bottom, flexGrow: sections.length ? 0 : 1 }}
       getItemLayout={(_, index) => (
         {length: 88, offset: 88 * index, index}

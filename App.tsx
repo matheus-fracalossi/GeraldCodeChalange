@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import './global.css';
-import { StatusBar, useColorScheme } from 'react-native';
+import { StatusBar, useColorScheme, KeyboardAvoidingView, Platform } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -47,39 +47,39 @@ const TransactionScreen = () => {
     refresh();
   }, [refresh]);
 
-  if (error) {
-    return (
+  return (
+    <KeyboardAvoidingView 
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <Box
-        className="flex-1 bg-white"
+        className="flex-1 bg-white px-4"
         style={{ paddingTop: safeAreaInsets.top }}
       >
-        <ErrorState onRetry={handleRetry} />
+        {error ? (
+          <ErrorState onRetry={handleRetry} />
+        ) : (
+          <>
+            <SearchInput value={searchQuery} onChangeText={handleSearchChange} />
+
+            <FilterBar currentFilter={filterType} onFilterChange={handleFilterChange} />
+
+            <TransactionList
+              transactions={transactions}
+              loading={fetchState === 'initial-fetch'}
+              loadingMore={fetchState === 'fetch-more'}
+              refreshing={fetchState === 'refreshing'}
+              onRefresh={refresh}
+              onLoadMore={loadMore}
+              onClearFilters={() => {
+                setSearchQuery('');
+                setFilterType('all');
+              }}
+            />
+          </>
+        )}
       </Box>
-    );
-  }
-
-  return (
-    <Box
-      className="flex-1 bg-white px-4"
-      style={{ paddingTop: safeAreaInsets.top }}
-    >
-      <SearchInput value={searchQuery} onChangeText={handleSearchChange} />
-
-      <FilterBar currentFilter={filterType} onFilterChange={handleFilterChange} />
-
-      <TransactionList
-        transactions={transactions}
-        loading={fetchState === 'initial-fetch'}
-        loadingMore={fetchState === 'fetch-more'}
-        refreshing={fetchState === 'refreshing'}
-        onRefresh={refresh}
-        onLoadMore={loadMore}
-        onClearFilters={() => {
-          setSearchQuery('');
-          setFilterType('all');
-        }}
-      />
-    </Box>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -10,6 +10,7 @@ interface UseTransactionsReturn {
   error: string | null;
   loadMore: () => void;
   refresh: () => void;
+  searchWithDebounce: () => void;
 }
 
 export const useTransactions = ({type, merchant}: {type?: Transaction['type'], merchant?: Transaction["merchant"]}): UseTransactionsReturn => {
@@ -22,6 +23,9 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
   const hasNextPage = nextPageRef.current !== null;
 
   const fetchTransactions = useCallback(async (page: number, fetchState: FetchState): Promise<void> => {
+    setFetchState(fetchState);
+    setError(null);
+    
     try {
       const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date', type, merchant });
 
@@ -54,32 +58,40 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
 
   const loadMore = useCallback(() => {
     if (hasNextPage && fetchState === null) {
-      debouncedFetchTransactions(nextPageRef.current!, 'fetch-more');
+      fetchTransactions(nextPageRef.current!, 'fetch-more');
     }
-  }, [hasNextPage, fetchState, debouncedFetchTransactions]);
+  }, [hasNextPage, fetchState, fetchTransactions]);
 
   const refresh = useCallback(() => {
     nextPageRef.current = null;
-    debouncedFetchTransactions(1, 'refreshing');
-  }, [debouncedFetchTransactions]);
+    fetchTransactions(1, 'refreshing');
+  }, [fetchTransactions]);
 
-  useEffect(() => {
+  const searchWithDebounce = useCallback(() => {
+    nextPageRef.current = null;
     debouncedFetchTransactions(1, 'initial-fetch');
   }, [debouncedFetchTransactions]);
 
   useEffect(() => {
+    if (merchant) {
+      debouncedFetchTransactions(1, 'initial-fetch');
+    } else {
+      fetchTransactions(1, 'initial-fetch');
+    }
+
     return () => {
       if (debounceTimeoutRef.current) {
         clearTimeout(debounceTimeoutRef.current);
       }
     };
-  }, []);
+  }, [fetchTransactions, debouncedFetchTransactions, merchant]);
 
   return {
     transactions,
     fetchState,
     error,
     loadMore,
-    refresh
+    refresh,
+    searchWithDebounce
   };
 };
