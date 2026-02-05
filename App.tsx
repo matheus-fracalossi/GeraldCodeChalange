@@ -1,10 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import './global.css';
 import { NewAppScreen } from '@react-native/new-app-screen';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
@@ -13,13 +8,17 @@ import {
 } from 'react-native-safe-area-context';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const colorScheme = useColorScheme() ?? 'dark';
+  const isDarkMode = colorScheme === 'dark';
 
   return (
-    <SafeAreaProvider>
+    <GluestackUIProvider mode={colorScheme}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <SafeAreaProvider>
       <AppContent />
     </SafeAreaProvider>
+    </GluestackUIProvider>
+  
   );
 }
 
