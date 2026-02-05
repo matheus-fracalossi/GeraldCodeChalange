@@ -1,169 +1,106 @@
+import React, { useState, useMemo, useCallback } from 'react';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import './global.css';
-import { StatusBar, StyleSheet, useColorScheme, View, FlatList, ActivityIndicator } from 'react-native';
+import { StatusBar, useColorScheme, ActivityIndicator } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { useTransactions } from './src/hooks/useTransactions';
-import { Transaction } from './src/types/transaction';
+import { Transaction, TransactionFilter } from './src/types/transaction';
+import { SearchInput } from './src/components/molecules/SearchInput';
+import { FilterBar } from './src/components/molecules/FilterBar';
+import { TransactionList } from './src/components/organisms/TransactionList';
 
-function App() {
-  const colorScheme = useColorScheme() ?? 'dark';
+const App = () => {
+  const colorScheme = useColorScheme() ?? 'light';
   const isDarkMode = colorScheme === 'dark';
-
 
   return (
     <GluestackUIProvider mode={colorScheme}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <SafeAreaProvider>
-      <AppContent />
-    </SafeAreaProvider>
+        <AppContent />
+      </SafeAreaProvider>
     </GluestackUIProvider>
-  
   );
-}
+};
 
-function AppContent() {
+const AppContent = () => {
   const safeAreaInsets = useSafeAreaInsets();
   const { t } = useTranslation();
   const { transactions, loading, error } = useTransactions();
 
-  const renderTransaction = ({ item }: { item: Transaction }) => (
-    <View style={styles.transactionItem}>
-      <View style={styles.transactionHeader}>
-        <Text style={styles.merchant}>{item.merchant}</Text>
-        <Text style={[styles.amount, item.type === 'income' ? styles.income : styles.expense]}>
-         {t('transactions.transactionAmount', { amount: item.amount })}
-        </Text>
-      </View>
-      <View style={styles.transactionDetails}>
-        <Text style={styles.category}>{item.category}</Text>
-        <Text style={styles.date}>{t('transactions.transactionDate', { date: item.date })}</Text>
-      </View>
-    </View>
-  );
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState<TransactionFilter>('all');
+
+  const filteredTransactions = useMemo(() => {
+    let result = transactions;
+
+    if (filter !== 'all') {
+      result = result.filter((tx) => tx.type === filter);
+    }
+
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter((tx) =>
+        tx.merchant.toLowerCase().includes(query)
+      );
+    }
+
+    return result;
+  }, [transactions, filter, searchQuery]);
+
+  const handleSearchChange = useCallback((text: string) => {
+    setSearchQuery(text);
+  }, []);
+
+  const handleFilterChange = useCallback((newFilter: TransactionFilter) => {
+    setFilter(newFilter);
+  }, []);
+
+  const handleTransactionPress = useCallback((transaction: Transaction) => {
+    console.log('Transaction pressed:', transaction.id);
+  }, []);
 
   if (loading && transactions.length === 0) {
     return (
-      <View style={styles.centerContainer}>
+      <Box className="flex-1 items-center justify-center p-5 bg-white">
         <ActivityIndicator size="large" />
-        <Text style={styles.loadingText}>{t("common.loading")}</Text>
-      </View>
+        <Text className="mt-3 text-base text-typography-500">
+          {t('common.loading')}
+        </Text>
+      </Box>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.centerContainer}>
-        <Text style={styles.errorText}>{error}</Text>
-      </View>
+      <Box className="flex-1 items-center justify-center p-5 bg-white">
+        <Text className="text-base text-error-600 text-center">{error}</Text>
+      </Box>
     );
   }
 
   return (
-    <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
-      <Text style={styles.title}>{t("transactions.title")}</Text>
-      
-      <FlatList
-        data={transactions}
-        renderItem={renderTransaction}
-        keyExtractor={(item) => item.id}
-        refreshing={loading && transactions.length === 0}
-        ListFooterComponent={() => 
-          loading && transactions.length > 0 ? (
-            <View style={styles.footerLoader}>
-              <ActivityIndicator size="small" />
-            </View>
-          ) : null
-        }
-        style={styles.list}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
-  );
-}
+    <Box
+      className="flex-1 bg-white px-4"
+      style={{ paddingTop: safeAreaInsets.top }}
+    >
+      <SearchInput value={searchQuery} onChangeText={handleSearchChange} />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  centerContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  list: {
-    flex: 1,
-  },
-  transactionItem: {
-    backgroundColor: '#f8f9fa',
-    padding: 16,
-    marginVertical: 4,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#e9ecef',
-  },
-  transactionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  merchant: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#212529',
-    flex: 1,
-  },
-  amount: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  income: {
-    color: '#28a745',
-  },
-  expense: {
-    color: '#dc3545',
-  },
-  transactionDetails: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  category: {
-    fontSize: 14,
-    color: '#6c757d',
-    textTransform: 'capitalize',
-  },
-  date: {
-    fontSize: 14,
-    color: '#6c757d',
-  },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 16,
-    color: '#6c757d',
-  },
-  errorText: {
-    fontSize: 16,
-    color: '#dc3545',
-    textAlign: 'center',
-  },
-  footerLoader: {
-    padding: 20,
-    alignItems: 'center',
-  },
-});
+      <FilterBar currentFilter={filter} onFilterChange={handleFilterChange} />
+
+      <TransactionList
+        transactions={filteredTransactions}
+        loading={loading}
+        onTransactionPress={handleTransactionPress}
+      />
+    </Box>
+  );
+};
 
 export default App;
