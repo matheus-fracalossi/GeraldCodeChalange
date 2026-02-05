@@ -94,10 +94,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
     return null;
   }, [loadingMore]);
 
-  const keyExtractor = useCallback(
-    (item: Transaction, index: number) => `${item.id}-${index}`,
-    []
-  );
+  const keyExtractor = (item: Transaction, index: number) => `${item.id}-${index}`;
 
   if (loading) {
     return <TransactionListSkeleton />;

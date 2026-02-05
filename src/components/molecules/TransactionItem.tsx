@@ -1,10 +1,11 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { TransactionItemProps } from '../../types/transaction';
 import { getCategoryEmoji } from '../../utils/categoryEmoji';
 
-export const TransactionItem: React.FC<TransactionItemProps> = ({
+export const TransactionItem = React.memo<TransactionItemProps>(({
   transaction,
 }) => {
   const { t } = useTranslation();
@@ -47,4 +48,4 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
       </Text>
     </Box>
   );
-};
+});

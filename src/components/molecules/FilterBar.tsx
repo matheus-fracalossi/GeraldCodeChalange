@@ -50,10 +50,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     [currentFilter, onFilterChange, t]
   );
 
-  const keyExtractor = useCallback(
-    (item: FilterOption) => item.key,
-    []
-  );
+  const keyExtractor = (item: FilterOption) => item.key;
 
   return (
     <Box className="py-3">
