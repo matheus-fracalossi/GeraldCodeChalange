@@ -74,7 +74,14 @@ cd GeraldCodeChalange
 npm install
 ```
 
-3. **iOS Setup** (macOS only)
+3. **Create environment file**
+
+```bash
+# Copy the environment template
+cp .env.template .env
+```
+
+4. **iOS Setup** (macOS only)
 
 ```bash
 # Install CocoaPods dependencies
@@ -82,21 +89,21 @@ bundle install
 bundle exec pod install
 ```
 
-4. **Start the JSON Server** (Mock API)
+5. **Start the JSON Server** (Mock API)
 
 ```bash
 # In a separate terminal
 npm run start-server
 ```
 
-5. **Start Metro Bundler**
+6. **Start Metro Bundler**
 
 ```bash
 # In another terminal
 npm start
 ```
 
-6. **Run the app**
+7. **Run the app**
 
 ```bash
 # For iOS
