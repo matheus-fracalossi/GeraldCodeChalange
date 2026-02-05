@@ -15,6 +15,7 @@
     "@gluestack-ui/utils": "^3.0.15",
     "@legendapp/motion": "^2.5.3",
     "@react-native/new-app-screen": "0.81.0",
+    "lucide-react-native": "^0.510.0",
     "nativewind": "^4.2.1",
     "react": "19.1.0",
     "react-aria": "^3.46.0",
