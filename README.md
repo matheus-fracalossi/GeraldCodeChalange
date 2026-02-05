@@ -75,7 +75,7 @@ bundle exec pod install --project-directory=ios
 4. **Start the JSON Server** (Mock API)
 ```bash
 # In a separate terminal
-npm run server
+npm run start-server
 ```
 
 5. **Start Metro Bundler**
@@ -98,15 +98,15 @@ npm run android
 If you're experiencing issues with the client not communicating with the JSON server:
 
 #### **Local Development**
-The app is configured to use `http://localhost:3001` for the API. This works fine for iOS Simulator but may cause issues with Android Emulator.
+The app is configured to use `http://localhost:3000` for the API. This works fine for iOS Simulator but may cause issues with Android Emulator.
 
 #### **Android Emulator Issues**
 Android Emulator maps `localhost` differently. Try these solutions:
 
 1. **Use Android Emulator IP**
 ```bash
-# Update httpClient.ts baseURL to:
-const BASE_URL = 'http://10.0.2.2:3001';
+# Update src/api/httpClient.ts baseURL to:
+const BASE_URL = 'http://10.0.2.2:3000';
 ```
 
 2. **Use ngrok for External Access**
@@ -114,10 +114,10 @@ const BASE_URL = 'http://10.0.2.2:3001';
 # Install ngrok globally
 npm install -g ngrok
 
-# Expose your local server
-ngrok http 3001
+# Expose your local JSON server (default port 3000)
+ngrok http 3000
 
-# Update httpClient.ts with ngrok URL:
+# Update src/api/httpClient.ts with ngrok URL:
 const BASE_URL = 'https://your-ngrok-url.ngrok.io';
 ```
 
@@ -126,8 +126,8 @@ const BASE_URL = 'https://your-ngrok-url.ngrok.io';
 # Find your local IP
 ifconfig | grep "inet " | grep -v 127.0.0.1
 
-# Update httpClient.ts with your IP:
-const BASE_URL = 'http://YOUR_LOCAL_IP:3001';
+# Update src/api/httpClient.ts with your IP:
+const BASE_URL = 'http://YOUR_LOCAL_IP:3000';
 ```
 
 #### **Physical Device Testing**
@@ -140,10 +140,10 @@ For testing on physical devices, ensure both your development machine and device
 npm test
 
 # Run tests in watch mode
-npm run test:watch
+npm test -- --watch
 
 # Run tests with coverage
-npm run test:coverage
+npm test -- --coverage
 ```
 
 ## 📱 Features Implemented
