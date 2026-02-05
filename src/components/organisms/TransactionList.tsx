@@ -27,7 +27,6 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   refreshing = false,
   onRefresh,
   onLoadMore,
-  onTransactionPress,
 }) => {
   const { t } = useTranslation();
   const {bottom} = useSafeAreaInsets()
@@ -62,9 +61,9 @@ export const TransactionList: React.FC<TransactionListProps> = ({
 
   const renderItem = useCallback(
     ({ item }: { item: Transaction }) => (
-      <TransactionItem transaction={item} onPress={onTransactionPress} />
+      <TransactionItem transaction={item} />
     ),
-    [onTransactionPress]
+    []
   );
 
   const renderEmpty = useCallback(

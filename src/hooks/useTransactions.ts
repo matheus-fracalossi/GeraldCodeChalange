@@ -13,7 +13,7 @@ interface UseTransactionsReturn {
   refresh: () => void;
 }
 
-export const useTransactions = (): UseTransactionsReturn => {
+export const useTransactions = ({type}: {type?: Transaction['type']}): UseTransactionsReturn => {
   const [fetchState, setFetchState] = useState<FetchState>('initial-fetch');
   const [error, setError] = useState<string | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -26,7 +26,7 @@ export const useTransactions = (): UseTransactionsReturn => {
       setFetchState(fetchState);
       setError(null);
       
-      const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date' });      
+      const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date', type });      
       
       if (fetchState === "fetch-more") {
         setTransactions(prev => [...prev, ...response.data]);
@@ -40,7 +40,7 @@ export const useTransactions = (): UseTransactionsReturn => {
     } finally {
       setFetchState(null);
     }
-  }, []);
+  }, [type]);
 
   const loadMore = useCallback(() => {
     if (hasNextPage && fetchState === null) {
@@ -55,7 +55,7 @@ export const useTransactions = (): UseTransactionsReturn => {
 
   useEffect(() => {
     fetchTransactions(1, 'initial-fetch');
-  }, [fetchTransactions]);
+  }, [fetchTransactions, type]);
 
   return {
     transactions,

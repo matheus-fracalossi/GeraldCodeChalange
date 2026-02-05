@@ -1,9 +1,12 @@
 import { API_URL } from '@env';
 
+import { Transaction, TransactionFilter } from "../types/transaction";
+
 interface PaginationParams {
   page?: number;
   perPage?: number;
   sort?: string;
+  type?: Transaction["type"];
 }
 
 interface PaginatedResponse<T> {
@@ -41,12 +44,19 @@ const get = async <T>(endpoint: string, params?: Record<string, string | number>
 
 const getPaginated = async <T>(
   endpoint: string, 
-  { page = 1, perPage = 10, sort }: PaginationParams = {}
+  { page = 1, perPage = 10, sort, type }: PaginationParams = {}
 ): Promise<PaginatedResponse<T>> => {
-  const params: Record<string, string | number> = { _page: page, _per_page: perPage };
+  const params: Record<string, string | number> = { 
+    _page: page, 
+    _per_page: perPage 
+  };
   
-  if (sort) {
+  if (sort !== undefined) {
     params._sort = sort;
+  }
+  
+  if (type !== undefined) {
+    params.type = type;
   }
   
   const data = await get<PaginatedResponse<T>>(endpoint, params);

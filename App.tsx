@@ -6,14 +6,13 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { useTransactions } from './src/hooks/useTransactions';
-import { Transaction, TransactionFilter } from './src/types/transaction';
 import { SearchInput } from './src/components/molecules/SearchInput';
 import { FilterBar } from './src/components/molecules/FilterBar';
 import { TransactionList } from './src/components/organisms/TransactionList';
+import { TransactionFilter } from '@/types/transaction';
 
 const App = () => {
   const colorScheme = useColorScheme() ?? 'light';
@@ -23,47 +22,25 @@ const App = () => {
     <GluestackUIProvider mode={colorScheme}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <SafeAreaProvider>
-        <AppContent />
+        <TransactionScreen />
       </SafeAreaProvider>
     </GluestackUIProvider>
   );
 };
 
-const AppContent = () => {
+const TransactionScreen = () => {
   const safeAreaInsets = useSafeAreaInsets();
-  const { t } = useTranslation();
-  const { transactions, fetchState, error, hasNextPage, loadMore, refresh } = useTransactions();
-
   const [searchQuery, setSearchQuery] = useState('');
-  const [filter, setFilter] = useState<TransactionFilter>('all');
+  const [filterType, setFilterType] = useState<TransactionFilter>('all');
 
-  const filteredTransactions = useMemo(() => {
-    let result = transactions;
-
-    if (filter !== 'all') {
-      result = result.filter((tx) => tx.type === filter);
-    }
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter((tx) =>
-        tx.merchant.toLowerCase().includes(query)
-      );
-    }
-
-    return result;
-  }, [transactions, filter, searchQuery]);
+  const { transactions, fetchState, error, hasNextPage, loadMore, refresh } = useTransactions({type: filterType === 'all' ? undefined : filterType});
 
   const handleSearchChange = useCallback((text: string) => {
     setSearchQuery(text);
   }, []);
 
   const handleFilterChange = useCallback((newFilter: TransactionFilter) => {
-    setFilter(newFilter);
-  }, []);
-
-  const handleTransactionPress = useCallback((transaction: Transaction) => {
-    console.log('Transaction pressed:', transaction.id);
+    setFilterType(newFilter);
   }, []);
 
 
@@ -82,16 +59,15 @@ const AppContent = () => {
     >
       <SearchInput value={searchQuery} onChangeText={handleSearchChange} />
 
-      <FilterBar currentFilter={filter} onFilterChange={handleFilterChange} />
+      <FilterBar currentFilter={filterType} onFilterChange={handleFilterChange} />
 
       <TransactionList
-        transactions={filteredTransactions}
+        transactions={transactions}
         loading={fetchState === 'initial-fetch'}
         loadingMore={fetchState === 'fetch-more'}
         refreshing={fetchState === 'refreshing'}
         onRefresh={refresh}
         onLoadMore={loadMore}
-        onTransactionPress={handleTransactionPress}
       />
     </Box>
   );

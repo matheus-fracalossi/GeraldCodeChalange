@@ -1,5 +1,3 @@
-import React from 'react';
-import { Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
@@ -8,20 +6,14 @@ import { getCategoryEmoji } from '../../utils/categoryEmoji';
 
 export const TransactionItem: React.FC<TransactionItemProps> = ({
   transaction,
-  onPress,
 }) => {
   const { t } = useTranslation();
   const isIncome = transaction.type === 'income';
   const emoji = getCategoryEmoji(transaction.category);
   const categories = t(`categories`, { returnObjects: true })
 
-  const handlePress = () => {
-    onPress?.(transaction);
-  };
-
   return (
-    <Pressable
-      onPress={handlePress}
+    <Box
       className="flex-row items-center py-4 px-1"
       accessibilityRole="button"
       accessibilityLabel={t('transactions.transactionSummary', {
@@ -53,6 +45,6 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
       >
         {t('transactions.transactionAmount', { amount: transaction.amount })}
       </Text>
-    </Pressable>
+    </Box>
   );
 };
