@@ -27,6 +27,9 @@ const get = async <T>(endpoint: string, params?: Record<string, string | number>
     url += `?${searchParams.toString()}`;
   }
 
+  // Add 1 second delay to show skeleton loading state
+  await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
+
   const response = await fetch(url);
 
   if (!response.ok) {

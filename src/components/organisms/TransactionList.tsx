@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import { SectionList, RefreshControl, ActivityIndicator } from 'react-native';
+import { SectionList, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
@@ -7,6 +7,8 @@ import { Transaction } from '../../types/transaction';
 import { TransactionItem } from '../molecules/TransactionItem';
 import { groupTransactionsByYear, TransactionSection } from '../../utils/dateUtils';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import TransactionListSkeleton from './TransactionListSkeleton';
+import TransactionItemSkeleton from '../atoms/TransactionItemSkeleton';
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -77,8 +79,9 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       return null;
     }
     return (
-      <Box className="py-5 items-center">
-        <ActivityIndicator size="small" />
+      <Box className="px-4">
+        <TransactionItemSkeleton />
+        <TransactionItemSkeleton />
       </Box>
     );
   }, [loading, transactions.length]);
@@ -87,6 +90,11 @@ export const TransactionList: React.FC<TransactionListProps> = ({
     (item: Transaction) => item.id,
     []
   );
+
+  // Show skeleton during initial loading (when loading and no transactions)
+  if (loading) {
+    return <TransactionListSkeleton />;
+  }
 
   return (
     <SectionList

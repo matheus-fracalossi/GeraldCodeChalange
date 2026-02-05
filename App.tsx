@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import './global.css';
-import { StatusBar, useColorScheme, ActivityIndicator } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -66,16 +66,6 @@ const AppContent = () => {
     console.log('Transaction pressed:', transaction.id);
   }, []);
 
-  if (loading && transactions.length === 0) {
-    return (
-      <Box className="flex-1 items-center justify-center p-5 bg-white">
-        <ActivityIndicator size="large" />
-        <Text className="mt-3 text-base text-typography-500">
-          {t('common.loading')}
-        </Text>
-      </Box>
-    );
-  }
 
   if (error) {
     return (
