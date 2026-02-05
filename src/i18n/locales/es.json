@@ -1,0 +1,58 @@
+{
+  "translation": {
+    "common": {
+      "loading": "Cargando...",
+      "error": "Error",
+      "retry": "Reintentar",
+      "search": "Buscar",
+      "filter": "Filtrar",
+      "all": "Todos",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar"
+    },
+    "transactions": {
+      "title": "Transacciones",
+      "income": "Ingreso",
+      "expense": "Gasto",
+      "expenses": "Gastos",
+      "searchPlaceholder": "Buscar por comerciante...",
+      "noTransactions": "No se encontraron transacciones",
+      "pullToRefresh": "Desliza para actualizar",
+      "filterBy": "Filtrar por",
+      "amount": "Cantidad",
+      "merchant": "Comerciante",
+      "date": "Fecha",
+      "category": "Categoría",
+      "type": "Tipo",
+      "transactionAmount": "{{amount, currency}}",
+      "transactionDate": "{{date, date}}",
+      "transactionDateTime": "{{date, dateTime}}",
+      "totalBalance": "Saldo Total: {{balance, currency}}",
+      "transactionCount": "{{count}} transacciones",
+      "transactionCount_one": "{{count}} transacción",
+      "merchantTransaction": "{{merchant, uppercase}} - {{amount, currency}}",
+      "transactionSummary": "{{merchant}} el {{date, date}} por {{amount, currency}}",
+      "filterResults": "Mostrando {{count}} de {{total}} transacciones",
+      "lastUpdated": "Última actualización: {{time, dateTime}}"
+    },
+    "categories": {
+      "Food & Drink": "Comida y Bebida",
+      "Income": "Ingreso",
+      "Entertainment": "Entretenimiento",
+      "Transportation": "Transporte",
+      "Groceries": "Supermercado",
+      "Health & Fitness": "Salud y Fitness",
+      "Investment": "Inversión",
+      "Shopping": "Compras",
+      "Rewards": "Recompensas",
+      "Utilities": "Servicios",
+      "Government": "Gobierno",
+      "Home & Garden": "Hogar y Jardín"
+    },
+    "errors": {
+      "networkError": "Error de red. Verifica tu conexión.",
+      "serverError": "Error del servidor. Inténtalo de nuevo más tarde.",
+      "unknownError": "Ocurrió un error desconocido."
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "translation": {
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "income": "Income",
+    "expense": "Expense",
+    "expenses": "Expenses",
+    "searchPlaceholder": "Search by merchant...",
+    "noTransactions": "No transactions found",
+    "pullToRefresh": "Pull to refresh",
+    "filterBy": "Filter by",
+    "amount": "Amount",
+    "merchant": "Merchant",
+    "date": "Date",
+    "category": "Category",
+    "type": "Type",
+    "transactionAmount": "{{amount, currency}}",
+    "transactionDate": "{{date, date}}",
+    "transactionDateTime": "{{date, dateTime}}",
+    "totalBalance": "Total Balance: {{balance, currency}}",
+    "transactionCount": "{{count}} transactions",
+    "transactionCount_one": "{{count}} transaction",
+    "merchantTransaction": "{{merchant, uppercase}} - {{amount, currency}}",
+    "transactionSummary": "{{merchant}} on {{date, date}} for {{amount, currency}}",
+    "filterResults": "Showing {{count}} of {{total}} transactions",
+    "lastUpdated": "Last updated: {{time, dateTime}}"
+  },
+  "categories": {
+    "Food & Drink": "Food & Drink",
+    "Income": "Income",
+    "Entertainment": "Entertainment",
+    "Transportation": "Transportation",
+    "Groceries": "Groceries",
+    "Health & Fitness": "Health & Fitness",
+    "Investment": "Investment",
+    "Shopping": "Shopping",
+    "Rewards": "Rewards",
+    "Utilities": "Utilities",
+    "Government": "Government",
+    "Home & Garden": "Home & Garden"
+  },
+  "errors": {
+    "networkError": "Network error. Please check your connection.",
+    "serverError": "Server error. Please try again later.",
+    "unknownError": "An unknown error occurred."
+  }
+}
+}

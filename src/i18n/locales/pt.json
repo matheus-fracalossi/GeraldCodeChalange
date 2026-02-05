@@ -1,0 +1,58 @@
+{
+  "translation": {
+    "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "retry": "Tentar novamente",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar"
+  },
+  "transactions": {
+    "title": "Transações",
+    "income": "Receita",
+    "expense": "Despesa",
+    "expenses": "Despesas",
+    "searchPlaceholder": "Buscar por comerciante...",
+    "noTransactions": "Nenhuma transação encontrada",
+    "pullToRefresh": "Puxe para atualizar",
+    "filterBy": "Filtrar por",
+    "amount": "Valor",
+    "merchant": "Comerciante",
+    "date": "Data",
+    "category": "Categoria",
+    "type": "Tipo",
+    "transactionAmount": "{{amount, currency}}",
+    "transactionDate": "{{date, date}}",
+    "transactionDateTime": "{{date, dateTime}}",
+    "totalBalance": "Saldo Total: {{balance, currency}}",
+    "transactionCount": "{{count}} transações",
+    "transactionCount_one": "{{count}} transação",
+    "merchantTransaction": "{{merchant, uppercase}} - {{amount, currency}}",
+    "transactionSummary": "{{merchant}} em {{date, date}} por {{amount, currency}}",
+    "filterResults": "Mostrando {{count}} de {{total}} transações",
+    "lastUpdated": "Última atualização: {{time, dateTime}}"
+  },
+  "categories": {
+    "Food & Drink": "Comida e Bebida",
+    "Income": "Receita",
+    "Entertainment": "Entretenimento",
+    "Transportation": "Transporte",
+    "Groceries": "Supermercado",
+    "Health & Fitness": "Saúde e Fitness",
+    "Investment": "Investimento",
+    "Shopping": "Compras",
+    "Rewards": "Recompensas",
+    "Utilities": "Utilidades",
+    "Government": "Governo",
+    "Home & Garden": "Casa e Jardim"
+  },
+  "errors": {
+    "networkError": "Erro de rede. Verifique sua conexão.",
+    "serverError": "Erro do servidor. Tente novamente mais tarde.",
+    "unknownError": "Ocorreu um erro desconhecido."
+  }
+}
+}
