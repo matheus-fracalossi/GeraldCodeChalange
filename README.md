@@ -69,7 +69,7 @@ npm install
 ```bash
 # Install CocoaPods dependencies
 bundle install
-bundle exec pod install --project-directory=ios
+bundle exec pod install
 ```
 
 4. **Start the JSON Server** (Mock API)
@@ -142,39 +142,6 @@ ifconfig | grep "inet " | grep -v 127.0.0.1
 const BASE_URL = 'http://YOUR_LOCAL_IP:3000';
 ```
 
-#### **Physical Device Testing**
-For testing on physical devices, ensure both your development machine and device are on the same network, then use your machine's local IP address.
-
-#### **Troubleshooting Android Connectivity**
-If you're still having issues:
-
-1. **Check ADB Connection**
-```bash
-# Ensure your emulator/device is connected
-adb devices
-
-# Remove existing reverse proxy rules
-adb reverse --remove-all
-
-# Re-establish the reverse proxy
-adb reverse tcp:3000 tcp:3000
-```
-
-2. **Restart Development Servers**
-```bash
-# Stop JSON server (Ctrl+C)
-# Stop Metro bundler (Ctrl+C)
-
-# Restart JSON server
-npm run start-server
-
-# Restart Metro in a new terminal
-npm start
-
-# Rebuild and run the app
-npm run android
-```
-
 ## 🧪 Testing
 
 ```bash
@@ -223,61 +190,12 @@ npm test -- --coverage
 - **Category icons** for visual categorization
 - **Amount highlighting** for quick scanning
 
-## ⚖️ Trade-offs Made
-
-### **Given Time Constraints**
-1. **Simple State Management**: Used Context API instead of Redux for faster implementation
-2. **Mock Data**: JSON file instead of real backend integration
-3. **Basic Styling**: Focused on functionality over pixel-perfect design
-4. **Limited Testing**: Core logic tested, but could expand UI testing
-5. **No Offline Support**: Would require additional caching layer
-
-### **Performance vs Simplicity**
-- Chose FlatList optimizations that were easy to implement
-- Used React.memo selectively to avoid over-optimization
-- Debounced search for good UX without complex throttling
-
-## 🚀 Future Improvements
-
-### **With More Time, I Would Add:**
-
-#### **Features**
-- **Date range filtering** for better transaction management
-- **Transaction categories management** (add/edit/delete)
-- **Data visualization** with charts and spending insights
-- **Export functionality** (CSV, PDF reports)
-- **Transaction editing/deletion** capabilities
-- **Recurring transactions** support
-
-#### **Technical Enhancements**
-- **Redux Toolkit** for more complex state management
-- **React Query** for better data fetching and caching
-- **Offline support** with SQLite local storage
-- **Push notifications** for transaction alerts
-- **Biometric authentication** for security
-- **Dark mode** support
-
-#### **Performance & Quality**
-- **Code splitting** for better bundle size
-- **E2E testing** with Detox
-- **Performance monitoring** with Flipper
-- **Accessibility audit** and improvements
-- **CI/CD pipeline** with automated testing
-- **Error tracking** with Sentry
-
-#### **User Experience**
-- **Onboarding flow** for new users
-- **Advanced search** with multiple filters
-- **Gesture support** (swipe actions)
-- **Haptic feedback** for better interaction
-- **Voice input** for transaction entry
-
 ## 🤖 AI Tools Used
 
 ### **Development Assistance**
-- **Windsurf/Cascade AI**: Used for code generation, debugging, and architecture decisions
-- **GitHub Copilot**: Assisted with boilerplate code and TypeScript interfaces
-- **AI-powered refactoring** for code optimization and best practices
+- **Windsurf/Cascade AI**: Used for code generation, debugging, and architecture decisions with custom project rules set up locally
+- **gluestackmcp**: Used for component generation and styling
+- git mcp
 
 ### **How AI Helped**
 - **Rapid prototyping** of components and hooks
