@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonText } from '@/components/ui/button';
-import { Box } from '@/components/ui/box';
+import { Button, ButtonText, Box } from '@/components/atoms';
 import { FilterBarProps, TransactionFilter } from '../../types/transaction';
 
 interface FilterOption {

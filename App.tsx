@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { GluestackUIProvider } from '@/components/atoms/gluestack-ui-provider';
 import './global.css';
 import { StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { Box } from '@/components/ui/box';
+import { Box } from '@/components/atoms/box';
 import { useTransactions } from './src/hooks/useTransactions';
 import { SearchInput } from './src/components/molecules/SearchInput';
 import { FilterBar } from './src/components/molecules/FilterBar';

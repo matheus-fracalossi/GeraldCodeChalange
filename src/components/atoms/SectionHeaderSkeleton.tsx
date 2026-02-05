@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box } from '@/components/ui/box';
-import { SkeletonText } from '@/components/ui/skeleton';
+import { Box } from './box';
+import { SkeletonText } from './skeleton';
 
 interface SectionHeaderSkeletonProps {
   isYearHeader?: boolean;

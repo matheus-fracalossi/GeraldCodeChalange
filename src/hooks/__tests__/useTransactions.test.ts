@@ -512,14 +512,14 @@ describe('useTransactions Hook', () => {
         merchant: undefined
       });
 
-      rerender({ type: 'income' });
+      rerender({ type: 'expense' });
 
-      await waitFor(() => {
+      await waitFor(() => { 
         expect(mockGetTransactionsPaginated).toHaveBeenLastCalledWith({
           page: 1,
           perPage: 10,
           sort: '-date',
-          type: 'income',
+          type: 'expense',
           merchant: undefined
         });
       });

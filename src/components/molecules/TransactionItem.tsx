@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
+import { Box, Text } from '@/components/atoms';
 import { TransactionItemProps } from '../../types/transaction';
 import { getCategoryEmoji } from '../../utils/categoryEmoji';
 

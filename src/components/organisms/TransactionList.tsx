@@ -1,8 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { SectionList, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
+import { Box, Text } from '@/components/atoms';
 import { Transaction } from '../../types/transaction';
 import { TransactionItem } from '../molecules/TransactionItem';
 import { groupTransactionsByYear, TransactionSection } from '../../utils/dateUtils';

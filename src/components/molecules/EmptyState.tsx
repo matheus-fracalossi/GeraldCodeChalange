@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Text, Button, ButtonText } from '../ui';
+import { Box, Text, Button, ButtonText } from '@/components/atoms';
 
 interface EmptyStateProps {
   emoji?: string;

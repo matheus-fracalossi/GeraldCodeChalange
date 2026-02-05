@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box } from '@/components/ui/box';
-import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
+import { Box } from './box';
+import { Skeleton, SkeletonText } from './skeleton';
 
 const TransactionItemSkeleton: React.FC = () => {
   return (

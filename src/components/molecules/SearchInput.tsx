@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input, InputField, InputSlot } from '@/components/ui/input';
-import { Text } from '@/components/ui/text';
+import { Input, InputField, InputSlot, Text } from '@/components/atoms';
 import { SearchInputProps } from '../../types/transaction';
 
 export const SearchInput: React.FC<SearchInputProps> = ({
