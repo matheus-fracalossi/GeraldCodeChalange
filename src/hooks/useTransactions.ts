@@ -12,12 +12,13 @@ interface UseTransactionsReturn {
   refresh: () => void;
 }
 
-export const useTransactions = ({type}: {type?: Transaction['type']}): UseTransactionsReturn => {
+export const useTransactions = ({type, merchant}: {type?: Transaction['type'], merchant?: Transaction["merchant"]}): UseTransactionsReturn => {
   const [fetchState, setFetchState] = useState<FetchState>('initial-fetch');
   const [error, setError] = useState<string | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const nextPageRef = useRef<number | null>(null);
+  const debounceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasNextPage = nextPageRef.current !== null;
 
   const fetchTransactions = useCallback(async (page: number, fetchState: FetchState): Promise<void> => {
@@ -25,7 +26,8 @@ export const useTransactions = ({type}: {type?: Transaction['type']}): UseTransa
       setFetchState(fetchState);
       setError(null);
       
-      const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date', type });      
+      const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date', type, merchant });
+
       
       if (fetchState === "fetch-more") {
         setTransactions(prev => [...prev, ...response.data]);
@@ -39,7 +41,19 @@ export const useTransactions = ({type}: {type?: Transaction['type']}): UseTransa
     } finally {
       setFetchState(null);
     }
-  }, [type]);
+  }, [type, merchant]);
+
+  const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 300) => {
+    // Clear existing timeout
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+
+    // Set new timeout
+    debounceTimeoutRef.current = setTimeout(() => {
+      fetchTransactions(page, fetchState);
+    }, delay);
+  }, [fetchTransactions]);
 
   const loadMore = useCallback(() => {
     if (hasNextPage && fetchState === null) {
@@ -49,12 +63,21 @@ export const useTransactions = ({type}: {type?: Transaction['type']}): UseTransa
 
   const refresh = useCallback(() => {
     nextPageRef.current = null;
-    fetchTransactions(1, 'refreshing');
-  }, [fetchTransactions]);
+    debouncedFetchTransactions(1, 'refreshing');
+  }, [debouncedFetchTransactions]);
 
   useEffect(() => {
-    fetchTransactions(1, 'initial-fetch');
-  }, [fetchTransactions, type]);
+    debouncedFetchTransactions(1, 'initial-fetch');
+  }, [debouncedFetchTransactions]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return {
     transactions,
