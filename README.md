@@ -42,6 +42,14 @@ src/components/
 - **NativeWind** for utility-first styling
 - **React Native CLI** (not Expo) as specified
 
+### **Internationalization & Localization**
+
+- **React i18next** for comprehensive internationalization support
+- **Locale-aware formatting** for currency (USD) and dates
+- **Dynamic language switching** capability
+- **Screen reader friendly** text content with proper translations
+
+
 ### **Performance Optimizations**
 
 - **FlatList** with `keyExtractor` and `getItemLayout`
