@@ -109,7 +109,19 @@ Android Emulator maps `localhost` differently. Try these solutions:
 const BASE_URL = 'http://10.0.2.2:3000';
 ```
 
-2. **Use ngrok for External Access**
+2. **Reverse Proxy with ADB (Recommended for Android)**
+```bash
+# Set up reverse proxy using adb port forwarding
+adb reverse tcp:3000 tcp:3000
+
+# Keep the original localhost URL in httpClient.ts:
+const BASE_URL = 'http://localhost:3000';
+
+# Verify the reverse proxy is working
+adb reverse --list
+```
+
+3. **Use ngrok for External Access**
 ```bash
 # Install ngrok globally
 npm install -g ngrok
@@ -121,7 +133,7 @@ ngrok http 3000
 const BASE_URL = 'https://your-ngrok-url.ngrok.io';
 ```
 
-3. **Use Your Machine's IP**
+4. **Use Your Machine's IP**
 ```bash
 # Find your local IP
 ifconfig | grep "inet " | grep -v 127.0.0.1
@@ -132,6 +144,36 @@ const BASE_URL = 'http://YOUR_LOCAL_IP:3000';
 
 #### **Physical Device Testing**
 For testing on physical devices, ensure both your development machine and device are on the same network, then use your machine's local IP address.
+
+#### **Troubleshooting Android Connectivity**
+If you're still having issues:
+
+1. **Check ADB Connection**
+```bash
+# Ensure your emulator/device is connected
+adb devices
+
+# Remove existing reverse proxy rules
+adb reverse --remove-all
+
+# Re-establish the reverse proxy
+adb reverse tcp:3000 tcp:3000
+```
+
+2. **Restart Development Servers**
+```bash
+# Stop JSON server (Ctrl+C)
+# Stop Metro bundler (Ctrl+C)
+
+# Restart JSON server
+npm run start-server
+
+# Restart Metro in a new terminal
+npm start
+
+# Rebuild and run the app
+npm run android
+```
 
 ## 🧪 Testing
 
