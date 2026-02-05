@@ -56,7 +56,7 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
 
   const loadMore = useCallback(() => {
     if (hasNextPage && fetchState === null) {
-      fetchTransactions(nextPageRef.current!, 'fetch-more');
+      debouncedFetchTransactions(nextPageRef.current!, 'fetch-more');
     }
   }, [fetchState, fetchTransactions]);
 

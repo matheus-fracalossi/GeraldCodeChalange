@@ -70,8 +70,17 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   );
 
   const renderEmpty = useCallback(
-    () => <EmptyState onClearFilters={onClearFilters} />,
-    [onClearFilters]
+    () => (
+      <EmptyState
+        titleKey="transactions.noTransactions"
+        descriptionKey="transactions.noTransactionsDescription"
+        buttonTextKey={onClearFilters ? "transactions.clearFilters" : undefined}
+        onButtonPress={onClearFilters}
+        buttonAccessibilityLabel={t('transactions.clearFiltersAccessibility')}
+        buttonAccessibilityHint={t('transactions.clearFiltersHint')}
+      />
+    ),
+    [onClearFilters, t]
   );
 
   const renderFooter = useCallback(() => {
@@ -87,7 +96,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   }, [loadingMore]);
 
   const keyExtractor = useCallback(
-    (item: Transaction) => item.id,
+    (item: Transaction, index: number) => `${item.id}-${index}`,
     []
   );
 
@@ -114,6 +123,9 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       stickySectionHeadersEnabled={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: bottom, flexGrow: sections.length ? 0 : 1 }}
+      getItemLayout={(_, index) => (
+        {length: 88, offset: 88 * index, index}
+      )}
     />
   );
 };

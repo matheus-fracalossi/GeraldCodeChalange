@@ -13,6 +13,7 @@ import { SearchInput } from './src/components/molecules/SearchInput';
 import { FilterBar } from './src/components/molecules/FilterBar';
 import { TransactionList } from './src/components/organisms/TransactionList';
 import { TransactionFilter } from '@/types/transaction';
+import ErrorState from './src/components/molecules/ErrorState';
 
 const App = () => {
   const colorScheme = useColorScheme() ?? 'light';
@@ -43,11 +44,17 @@ const TransactionScreen = () => {
     setFilterType(newFilter);
   }, []);
 
+  const handleRetry = useCallback(() => {
+    refresh();
+  }, [refresh]);
 
   if (error) {
     return (
-      <Box className="flex-1 items-center justify-center p-5 bg-white">
-        <Text className="text-base text-error-600 text-center">{error}</Text>
+      <Box
+        className="flex-1 bg-white"
+        style={{ paddingTop: safeAreaInsets.top }}
+      >
+        <ErrorState onRetry={handleRetry} />
       </Box>
     );
   }

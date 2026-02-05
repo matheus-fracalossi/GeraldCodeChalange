@@ -21,6 +21,10 @@
       "yesterday": "AYER",
       "sectionDate": "{{date, sectionDate}}",
       "noTransactions": "No se encontraron transacciones",
+      "noTransactionsDescription": "Intenta ajustar tus filtros o término de búsqueda para encontrar lo que buscas.",
+      "clearFilters": "Limpiar Filtros",
+      "clearFiltersAccessibility": "Limpiar todos los filtros para mostrar todas las transacciones",
+      "clearFiltersHint": "Elimina todos los filtros activos y términos de búsqueda",
       "pullToRefresh": "Desliza para actualizar",
       "filterBy": "Filtrar por",
       "amount": "Cantidad",
@@ -57,7 +61,12 @@
     "errors": {
       "networkError": "Error de red. Verifica tu conexión.",
       "serverError": "Error del servidor. Inténtalo de nuevo más tarde.",
-      "unknownError": "Ocurrió un error desconocido."
+      "unknownError": "Ocurrió un error desconocido.",
+      "somethingWentWrong": "Algo salió mal",
+      "errorDescription": "Encontramos un error al cargar tus transacciones. Por favor, inténtalo de nuevo.",
+      "tryAgain": "Intentar de Nuevo",
+      "retryAccessibility": "Reintentar cargar transacciones",
+      "retryHint": "Intenta recargar los datos de las transacciones"
     }
   }
 }

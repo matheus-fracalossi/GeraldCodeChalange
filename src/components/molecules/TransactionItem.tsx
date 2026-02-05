@@ -14,7 +14,7 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
 
   return (
     <Box
-      className="flex-row items-center py-4 px-1"
+      className="flex-row items-center py-4 px-1 h-22"
       accessibilityRole="button"
       accessibilityLabel={t('transactions.transactionSummary', {
         merchant: transaction.merchant,
