@@ -62,6 +62,10 @@ const useTransactionContext = () => useContext(TransactionContext);
 ```
 
 ## Git Conventions
-**Commits:** `type(scope): description` - feat, fix, docs, style, refactor, test, chore
+**ALWAYS USE GIT CONVENTIONS - MANDATORY**
+**Commits:** `type(scope): short direct description` - feat, fix, docs, style, refactor, test, chore
+- Keep commit messages short and direct
+- Use imperative mood: "add feature" not "added feature"
+- Max 50 characters for subject line
 **Branches:** `feature/description`, `bugfix/description`, `hotfix/description`, `release/version`
 **MCP:** Always use git MCP tools for operations
