@@ -33,20 +33,16 @@ const formatValue: FormatFunction = (value, format, lng): string => {
         
         case 'sectionDate':
             const date = new Date(value);
-            const today = new Date();
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            
-            if (date.toDateString() === today.toDateString()) {
-                return 'TODAY';
-            }
-            if (date.toDateString() === yesterday.toDateString()) {
-                return 'YESTERDAY';
-            }
             return new Intl.DateTimeFormat(lng, {
                 month: 'long',
                 day: 'numeric'
             }).format(date).toUpperCase();
+        
+        case 'time':
+            return new Intl.DateTimeFormat(lng, {
+                hour: '2-digit',
+                minute: '2-digit'
+            }).format(new Date(value));
         
         default:
             return value;

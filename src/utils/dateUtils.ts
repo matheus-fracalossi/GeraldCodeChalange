@@ -4,6 +4,13 @@ export interface TransactionSection {
   title: string;
   date: string;
   data: Transaction[];
+  isYearHeader?: boolean;
+  year?: string;
+}
+
+export interface YearSection {
+  year: string;
+  sections: TransactionSection[];
 }
 
 export const groupTransactionsByDate = (
@@ -31,4 +38,49 @@ export const groupTransactionsByDate = (
     date: dateKey,
     data: grouped[dateKey],
   }));
+};
+
+export const groupTransactionsByYear = (
+  transactions: Transaction[]
+): TransactionSection[] => {
+  const yearGroups = transactions.reduce<Record<string, Transaction[]>>(
+    (acc, transaction) => {
+      const date = new Date(transaction.date);
+      const year = date.getFullYear().toString();
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(transaction);
+      return acc;
+    },
+    {}
+  );
+
+  const sortedYears = Object.keys(yearGroups).sort((a, b) => parseInt(b) - parseInt(a));
+  
+  const flatSections: TransactionSection[] = [];
+  
+  sortedYears.forEach((year) => {
+    // Add year header section
+    flatSections.push({
+      title: year,
+      date: year,
+      year,
+      data: [],
+      isYearHeader: true,
+    });
+    
+    // Add date sections for this year
+    const yearTransactions = yearGroups[year];
+    const dateSections = groupTransactionsByDate(yearTransactions);
+    
+    dateSections.forEach((section) => {
+      flatSections.push({
+        ...section,
+        year,
+      });
+    });
+  });
+  
+  return flatSections;
 };

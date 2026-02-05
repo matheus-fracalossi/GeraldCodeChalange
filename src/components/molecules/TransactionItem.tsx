@@ -41,6 +41,9 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
         <Text className="text-sm text-typography-500">
           {categories[transaction.category as keyof typeof categories]}
         </Text>
+        <Text className="text-xs text-typography-400">
+          {t('transactions.transactionTime', { date: transaction.date })}
+        </Text>
       </Box>
 
       <Text

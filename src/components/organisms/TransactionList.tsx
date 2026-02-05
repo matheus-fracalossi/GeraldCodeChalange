@@ -5,7 +5,7 @@ import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { Transaction } from '../../types/transaction';
 import { TransactionItem } from '../molecules/TransactionItem';
-import { groupTransactionsByDate, TransactionSection } from '../../utils/dateUtils';
+import { groupTransactionsByYear, TransactionSection } from '../../utils/dateUtils';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface TransactionListProps {
@@ -27,18 +27,30 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   const {bottom} = useSafeAreaInsets()
 
   const sections = useMemo(
-    () => groupTransactionsByDate(transactions),
+    () => groupTransactionsByYear(transactions),
     [transactions]
   );
 
   const renderSectionHeader = useCallback(
-    ({ section }: { section: TransactionSection }) => (
-      <Box className="py-2 bg-white">
-        <Text className="text-xs font-semibold text-typography-500 tracking-wide">
-          {t('transactions.sectionDate', { date: section.date })}
-        </Text>
-      </Box>
-    ),
+    ({ section }: { section: TransactionSection }) => {
+      if (section.isYearHeader) {
+        return (
+          <Box className="py-2 bg-white">
+            <Text className="text-xl font-bold text-typography-900">
+              {section.year}
+            </Text>
+          </Box>
+        );
+      }
+      
+      return (
+        <Box className="py-2 bg-white">
+          <Text className="text-xs font-semibold text-typography-500 tracking-wide">
+            {t('transactions.sectionDate', { date: section.date })}
+          </Text>
+        </Box>
+      );
+    },
     [t]
   );
 

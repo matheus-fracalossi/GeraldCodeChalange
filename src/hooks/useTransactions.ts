@@ -21,7 +21,7 @@ export const useTransactions = (): UseTransactionsReturn => {
       setLoading(true);
       setError(null);
       
-      const response = await getTransactionsPaginated({ page: page, perPage: 10 });      
+      const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date' });      
       
       setTransactions(response.data);
       setNextPage(response.next);        

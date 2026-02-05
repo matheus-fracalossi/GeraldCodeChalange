@@ -31,6 +31,7 @@
     "transactionAmount": "{{amount, currency}}",
     "transactionDate": "{{date, date}}",
     "transactionDateTime": "{{date, dateTime}}",
+    "transactionTime": "{{date, time}}",
     "totalBalance": "Saldo Total: {{balance, currency}}",
     "transactionCount": "{{count}} transações",
     "transactionCount_one": "{{count}} transação",

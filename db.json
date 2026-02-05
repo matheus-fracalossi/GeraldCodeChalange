@@ -175,6 +175,670 @@
       "date": "2024-02-04T15:20:00Z",
       "category": "Transportation",
       "type": "expense"
+    },
+    {
+      "id": "23",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-01-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "24",
+      "merchant": "Starbucks Coffee",
+      "amount": -525,
+      "date": "2025-01-02T08:15:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "25",
+      "merchant": "Netflix Subscription",
+      "amount": -1699,
+      "date": "2025-01-01T12:00:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "26",
+      "merchant": "Whole Foods Market",
+      "amount": -7234,
+      "date": "2025-01-03T11:30:00Z",
+      "category": "Groceries",
+      "type": "expense"
+    },
+    {
+      "id": "27",
+      "merchant": "Uber Ride",
+      "amount": -1350,
+      "date": "2025-01-04T18:20:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "28",
+      "merchant": "Freelance Project",
+      "amount": 95000,
+      "date": "2025-01-15T16:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "29",
+      "merchant": "Electric Bill Payment",
+      "amount": -8245,
+      "date": "2025-01-10T15:30:00Z",
+      "category": "Utilities",
+      "type": "expense"
+    },
+    {
+      "id": "30",
+      "merchant": "Gym Membership",
+      "amount": -3199,
+      "date": "2025-01-01T06:00:00Z",
+      "category": "Health & Fitness",
+      "type": "expense"
+    },
+    {
+      "id": "31",
+      "merchant": "Amazon Prime",
+      "amount": -1599,
+      "date": "2025-01-05T14:22:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "32",
+      "merchant": "Investment Dividend",
+      "amount": 13750,
+      "date": "2025-01-20T10:00:00Z",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": "33",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-02-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "34",
+      "merchant": "Target Store",
+      "amount": -9599,
+      "date": "2025-02-03T16:20:00Z",
+      "category": "Shopping",
+      "type": "expense"
+    },
+    {
+      "id": "35",
+      "merchant": "Chipotle Mexican Grill",
+      "amount": -1275,
+      "date": "2025-02-04T12:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "36",
+      "merchant": "Gas Station Shell",
+      "amount": -4820,
+      "date": "2025-02-05T07:30:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "37",
+      "merchant": "Spotify Premium",
+      "amount": -1099,
+      "date": "2025-02-01T11:30:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "38",
+      "merchant": "CVS Pharmacy",
+      "amount": -2167,
+      "date": "2025-02-10T10:15:00Z",
+      "category": "Health & Fitness",
+      "type": "expense"
+    },
+    {
+      "id": "39",
+      "merchant": "Side Hustle Payment",
+      "amount": 22000,
+      "date": "2025-02-15T21:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "40",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-03-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "41",
+      "merchant": "Home Depot",
+      "amount": -18678,
+      "date": "2025-03-05T09:30:00Z",
+      "category": "Home & Garden",
+      "type": "expense"
+    },
+    {
+      "id": "42",
+      "merchant": "McDonald's",
+      "amount": -999,
+      "date": "2025-03-08T13:45:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "43",
+      "merchant": "Apple App Store",
+      "amount": -399,
+      "date": "2025-03-12T19:45:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "44",
+      "merchant": "Cashback Reward",
+      "amount": 2750,
+      "date": "2025-03-20T20:00:00Z",
+      "category": "Rewards",
+      "type": "income"
+    },
+    {
+      "id": "45",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-04-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "46",
+      "merchant": "Whole Foods Market",
+      "amount": -7834,
+      "date": "2025-04-03T11:15:00Z",
+      "category": "Groceries",
+      "type": "expense"
+    },
+    {
+      "id": "47",
+      "merchant": "Uber Ride",
+      "amount": -1450,
+      "date": "2025-04-10T18:45:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "48",
+      "merchant": "Investment Dividend",
+      "amount": 14250,
+      "date": "2025-04-20T10:00:00Z",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": "49",
+      "merchant": "Electric Bill Payment",
+      "amount": -7645,
+      "date": "2025-04-15T15:30:00Z",
+      "category": "Utilities",
+      "type": "expense"
+    },
+    {
+      "id": "50",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-05-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "51",
+      "merchant": "Starbucks Coffee",
+      "amount": -575,
+      "date": "2025-05-05T08:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "52",
+      "merchant": "Target Store",
+      "amount": -10299,
+      "date": "2025-05-08T16:20:00Z",
+      "category": "Shopping",
+      "type": "expense"
+    },
+    {
+      "id": "53",
+      "merchant": "Freelance Project",
+      "amount": 105000,
+      "date": "2025-05-15T16:30:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "54",
+      "merchant": "Gas Station Shell",
+      "amount": -5120,
+      "date": "2025-05-20T07:30:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "55",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-06-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "56",
+      "merchant": "Chipotle Mexican Grill",
+      "amount": -1375,
+      "date": "2025-06-05T12:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "57",
+      "merchant": "CVS Pharmacy",
+      "amount": -2367,
+      "date": "2025-06-10T10:15:00Z",
+      "category": "Health & Fitness",
+      "type": "expense"
+    },
+    {
+      "id": "58",
+      "merchant": "Amazon Prime",
+      "amount": -1699,
+      "date": "2025-06-15T14:22:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "59",
+      "merchant": "Side Hustle Payment",
+      "amount": 25000,
+      "date": "2025-06-20T21:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "60",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-07-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "61",
+      "merchant": "Whole Foods Market",
+      "amount": -8234,
+      "date": "2025-07-03T11:15:00Z",
+      "category": "Groceries",
+      "type": "expense"
+    },
+    {
+      "id": "62",
+      "merchant": "Investment Dividend",
+      "amount": 15750,
+      "date": "2025-07-20T10:00:00Z",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": "63",
+      "merchant": "Electric Bill Payment",
+      "amount": -9245,
+      "date": "2025-07-15T15:30:00Z",
+      "category": "Utilities",
+      "type": "expense"
+    },
+    {
+      "id": "64",
+      "merchant": "Uber Ride",
+      "amount": -1550,
+      "date": "2025-07-25T18:45:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "65",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-08-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "66",
+      "merchant": "Home Depot",
+      "amount": -22678,
+      "date": "2025-08-05T09:30:00Z",
+      "category": "Home & Garden",
+      "type": "expense"
+    },
+    {
+      "id": "67",
+      "merchant": "McDonald's",
+      "amount": -1099,
+      "date": "2025-08-10T13:45:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "68",
+      "merchant": "Target Store",
+      "amount": -11599,
+      "date": "2025-08-15T16:20:00Z",
+      "category": "Shopping",
+      "type": "expense"
+    },
+    {
+      "id": "69",
+      "merchant": "Cashback Reward",
+      "amount": 3250,
+      "date": "2025-08-20T20:00:00Z",
+      "category": "Rewards",
+      "type": "income"
+    },
+    {
+      "id": "70",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-09-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "71",
+      "merchant": "Starbucks Coffee",
+      "amount": -625,
+      "date": "2025-09-05T08:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "72",
+      "merchant": "Gas Station Shell",
+      "amount": -5420,
+      "date": "2025-09-10T07:30:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "73",
+      "merchant": "Freelance Project",
+      "amount": 115000,
+      "date": "2025-09-15T16:30:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "74",
+      "merchant": "Apple App Store",
+      "amount": -499,
+      "date": "2025-09-20T19:45:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "75",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-10-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "76",
+      "merchant": "Whole Foods Market",
+      "amount": -8634,
+      "date": "2025-10-03T11:15:00Z",
+      "category": "Groceries",
+      "type": "expense"
+    },
+    {
+      "id": "77",
+      "merchant": "Investment Dividend",
+      "amount": 16250,
+      "date": "2025-10-20T10:00:00Z",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": "78",
+      "merchant": "CVS Pharmacy",
+      "amount": -2567,
+      "date": "2025-10-15T10:15:00Z",
+      "category": "Health & Fitness",
+      "type": "expense"
+    },
+    {
+      "id": "79",
+      "merchant": "Electric Bill Payment",
+      "amount": -8845,
+      "date": "2025-10-25T15:30:00Z",
+      "category": "Utilities",
+      "type": "expense"
+    },
+    {
+      "id": "80",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-11-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "81",
+      "merchant": "Chipotle Mexican Grill",
+      "amount": -1475,
+      "date": "2025-11-05T12:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "82",
+      "merchant": "Target Store",
+      "amount": -12899,
+      "date": "2025-11-10T16:20:00Z",
+      "category": "Shopping",
+      "type": "expense"
+    },
+    {
+      "id": "83",
+      "merchant": "Side Hustle Payment",
+      "amount": 28000,
+      "date": "2025-11-15T21:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "84",
+      "merchant": "Uber Ride",
+      "amount": -1650,
+      "date": "2025-11-20T18:45:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "85",
+      "merchant": "Salary Deposit",
+      "amount": 365000,
+      "date": "2025-12-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "86",
+      "merchant": "Home Depot",
+      "amount": -25678,
+      "date": "2025-12-05T09:30:00Z",
+      "category": "Home & Garden",
+      "type": "expense"
+    },
+    {
+      "id": "87",
+      "merchant": "McDonald's",
+      "amount": -1199,
+      "date": "2025-12-10T13:45:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "88",
+      "merchant": "Investment Dividend",
+      "amount": 18750,
+      "date": "2025-12-20T10:00:00Z",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": "89",
+      "merchant": "Cashback Reward",
+      "amount": 3750,
+      "date": "2025-12-25T20:00:00Z",
+      "category": "Rewards",
+      "type": "income"
+    },
+    {
+      "id": "90",
+      "merchant": "Salary Deposit",
+      "amount": 375000,
+      "date": "2026-01-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "91",
+      "merchant": "Starbucks Coffee",
+      "amount": -675,
+      "date": "2026-01-02T08:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "92",
+      "merchant": "Netflix Subscription",
+      "amount": -1799,
+      "date": "2026-01-01T12:00:00Z",
+      "category": "Entertainment",
+      "type": "expense"
+    },
+    {
+      "id": "93",
+      "merchant": "Whole Foods Market",
+      "amount": -9034,
+      "date": "2026-01-03T11:15:00Z",
+      "category": "Groceries",
+      "type": "expense"
+    },
+    {
+      "id": "94",
+      "merchant": "Uber Ride",
+      "amount": -1750,
+      "date": "2026-01-05T18:45:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "95",
+      "merchant": "Gym Membership",
+      "amount": -3399,
+      "date": "2026-01-01T06:00:00Z",
+      "category": "Health & Fitness",
+      "type": "expense"
+    },
+    {
+      "id": "96",
+      "merchant": "Electric Bill Payment",
+      "amount": -9645,
+      "date": "2026-01-10T15:30:00Z",
+      "category": "Utilities",
+      "type": "expense"
+    },
+    {
+      "id": "97",
+      "merchant": "Freelance Project",
+      "amount": 125000,
+      "date": "2026-01-15T16:30:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "98",
+      "merchant": "Investment Dividend",
+      "amount": 19250,
+      "date": "2026-01-20T10:00:00Z",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": "99",
+      "merchant": "Target Store",
+      "amount": -13599,
+      "date": "2026-01-25T16:20:00Z",
+      "category": "Shopping",
+      "type": "expense"
+    },
+    {
+      "id": "100",
+      "merchant": "Gas Station Shell",
+      "amount": -5720,
+      "date": "2026-01-30T07:30:00Z",
+      "category": "Transportation",
+      "type": "expense"
+    },
+    {
+      "id": "101",
+      "merchant": "Salary Deposit",
+      "amount": 375000,
+      "date": "2026-02-01T09:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "102",
+      "merchant": "Chipotle Mexican Grill",
+      "amount": -1575,
+      "date": "2026-02-02T12:30:00Z",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": "103",
+      "merchant": "CVS Pharmacy",
+      "amount": -2767,
+      "date": "2026-02-03T10:15:00Z",
+      "category": "Health & Fitness",
+      "type": "expense"
+    },
+    {
+      "id": "104",
+      "merchant": "Side Hustle Payment",
+      "amount": 30000,
+      "date": "2026-02-04T21:00:00Z",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": "105",
+      "merchant": "Apple App Store",
+      "amount": -599,
+      "date": "2026-02-05T19:45:00Z",
+      "category": "Entertainment",
+      "type": "expense"
     }
   ]
 }
