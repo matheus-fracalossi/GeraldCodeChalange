@@ -182,6 +182,10 @@ npm test -- --watch
 npm test -- --coverage
 ```
 
+## 🎬 Demo
+
+App demonstration videos are available in the `/videos` folder.
+
 ## 📱 Features Implemented
 
 ### **Core Features**
