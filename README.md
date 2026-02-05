@@ -136,6 +136,7 @@ const BASE_URL = 'http://10.0.2.2:3000';
 
 ```bash
 # Set up reverse proxy using adb port forwarding
+## Usually works for Android Emulator!!
 adb reverse tcp:3000 tcp:3000
 
 # Keep the original localhost URL in httpClient.ts:
