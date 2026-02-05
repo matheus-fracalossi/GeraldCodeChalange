@@ -23,9 +23,6 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
 
   const fetchTransactions = useCallback(async (page: number, fetchState: FetchState): Promise<void> => {
     try {
-      setFetchState(fetchState);
-      setError(null);
-      
       const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date', type, merchant });
 
       
@@ -43,8 +40,10 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
     }
   }, [type, merchant]);
 
-  const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 350) => {
+  const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 300) => {
     // Clear existing timeout
+    setFetchState(fetchState);
+    setError(null);
     if (debounceTimeoutRef.current) {
       clearTimeout(debounceTimeoutRef.current);
     }
