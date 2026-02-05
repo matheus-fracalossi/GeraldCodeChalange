@@ -52,7 +52,7 @@ export const groupTransactionsByYear = (
     {}
   );
 
-  const sortedYears = Object.keys(yearGroups).sort((a, b) => parseInt(b) - parseInt(a));
+  const sortedYears = Object.keys(yearGroups).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
   
   const flatSections: TransactionSection[] = [];
   

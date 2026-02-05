@@ -11,7 +11,7 @@ interface UseTransactionsReturn {
   loadMore: () => void;
   refresh: () => void;
   searchWithDebounce: () => void;
-  fetchTransactions: (page: number, fetchState: FetchState) => void;
+  fetchTransactions: (page: number, fetchType: FetchState) => void;
 }
 
 export const useTransactions = ({type, merchant}: {type?: Transaction['type'], merchant?: Transaction["merchant"]}): UseTransactionsReturn => {
@@ -23,15 +23,15 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
   const debounceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasNextPage = nextPageRef.current !== null;
 
-  const fetchTransactions = useCallback(async (page: number, fetchState: FetchState): Promise<void> => {
-    setFetchState(fetchState);
+  const fetchTransactions = useCallback(async (page: number, fetchType: FetchState): Promise<void> => {
+    setFetchState(fetchType);
     setError(null);
     
     try {
       const response = await getTransactionsPaginated({ page: page, perPage: 10, sort: '-date', type, merchant });
 
       
-      if (fetchState === "fetch-more") {
+      if (fetchType === "fetch-more") {
         setTransactions(prev => [...prev, ...response.data]);
       } else {
         setTransactions(response.data);
@@ -47,15 +47,15 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
     }
   }, [type, merchant]);
 
-  const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 300) => {
-    setFetchState(fetchState);
+  const debouncedFetchTransactions = useCallback((page: number, fetchType: FetchState, delay: number = 300) => {
+    setFetchState(fetchType);
     setError(null);
     if (debounceTimeoutRef.current) {
       clearTimeout(debounceTimeoutRef.current);
     }
 
     debounceTimeoutRef.current = setTimeout(() => {
-      fetchTransactions(page, fetchState);
+      fetchTransactions(page, fetchType);
     }, delay);
   }, [fetchTransactions]);
 

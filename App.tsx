@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import './global.css';
-import { StatusBar, useColorScheme, KeyboardAvoidingView, Platform } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,

@@ -70,7 +70,7 @@ const getPaginated = async <T>(
   
   const { data, headers } = await getPaginatedWithHeaders<T>(endpoint, params);
   
-  const totalCount = parseInt(headers.get('X-Total-Count') || '0');
+  const totalCount = parseInt(headers.get('X-Total-Count') || '0', 10);
   const totalPages = Math.ceil(totalCount / perPage);
   
   return {
