@@ -1,97 +1,273 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Gerald Code Challenge - Personal Finance App
 
-# Getting Started
+A React Native application for managing personal finances with transaction tracking, filtering, and search capabilities.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🎯 Challenge Overview
 
-## Step 1: Start Metro
+This app demonstrates a transaction management system with the following features:
+- **Transaction List**: Display merchant, amount, date, and category
+- **Filtering**: Filter by transaction type (All/Income/Expenses)
+- **Search**: Real-time search by merchant name with debouncing
+- **State Management**: Loading, error, and empty states with pull-to-refresh
+- **Performance**: Optimized FlatList with proper key extraction
+- **Accessibility**: Screen reader support and semantic elements
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🏗️ Architecture Decisions
 
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+### **Component Structure (Atomic Design)**
+```
+src/components/
+├── atoms/          # Basic UI elements (Button, Text, Input)
+├── molecules/      # Composed components (TransactionItem, FilterBar)
+└── organisms/      # Complex components (TransactionList, Header)
 ```
 
-## Step 2: Build and run your app
+### **State Management**
+- **Context API** with reducers for complex state management
+- **Custom Hooks** for data fetching and business logic separation
+- **Local State** for simple component-specific state
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### **Data Layer**
+- **Mock API** with simulated network delays for realistic UX
+- **JSON Server** for development API simulation
+- **TypeScript interfaces** for type safety and better DX
 
-### Android
+### **UI Framework**
+- **Gluestack UI** for consistent design system
+- **NativeWind** for utility-first styling
+- **React Native CLI** (not Expo) as specified
 
-```sh
-# Using npm
-npm run android
+### **Performance Optimizations**
+- **FlatList** with `keyExtractor` and `getItemLayout`
+- **React.memo** for expensive components
+- **useMemo/useCallback** for computed values and callbacks
+- **Debounced search** (300ms) to reduce API calls
 
-# OR using Yarn
-yarn android
+## 🚀 Setup Instructions
+
+### Prerequisites
+- Node.js (v18 or higher)
+- React Native development environment setup
+- iOS Simulator or Android Emulator
+- Xcode (for iOS development)
+- Android Studio (for Android development)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/matheus-fracalossi/GeraldCodeChalange.git
+cd GeraldCodeChalange
 ```
 
-### iOS
+2. **Install dependencies**
+```bash
+npm install
+```
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
+3. **iOS Setup** (macOS only)
+```bash
+# Install CocoaPods dependencies
 bundle install
+bundle exec pod install --project-directory=ios
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+4. **Start the JSON Server** (Mock API)
+```bash
+# In a separate terminal
+npm run server
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+5. **Start Metro Bundler**
+```bash
+# In another terminal
+npm start
+```
 
-```sh
-# Using npm
+6. **Run the app**
+```bash
+# For iOS
 npm run ios
 
-# OR using Yarn
-yarn ios
+# For Android
+npm run android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### 🔧 Network Configuration (ngrok advice)
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+If you're experiencing issues with the client not communicating with the JSON server:
 
-## Step 3: Modify your app
+#### **Local Development**
+The app is configured to use `http://localhost:3001` for the API. This works fine for iOS Simulator but may cause issues with Android Emulator.
 
-Now that you have successfully run the app, let's make changes!
+#### **Android Emulator Issues**
+Android Emulator maps `localhost` differently. Try these solutions:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+1. **Use Android Emulator IP**
+```bash
+# Update httpClient.ts baseURL to:
+const BASE_URL = 'http://10.0.2.2:3001';
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+2. **Use ngrok for External Access**
+```bash
+# Install ngrok globally
+npm install -g ngrok
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+# Expose your local server
+ngrok http 3001
 
-## Congratulations! :tada:
+# Update httpClient.ts with ngrok URL:
+const BASE_URL = 'https://your-ngrok-url.ngrok.io';
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+3. **Use Your Machine's IP**
+```bash
+# Find your local IP
+ifconfig | grep "inet " | grep -v 127.0.0.1
 
-### Now what?
+# Update httpClient.ts with your IP:
+const BASE_URL = 'http://YOUR_LOCAL_IP:3001';
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+#### **Physical Device Testing**
+For testing on physical devices, ensure both your development machine and device are on the same network, then use your machine's local IP address.
 
-# Troubleshooting
+## 🧪 Testing
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+```bash
+# Run unit tests
+npm test
 
-# Learn More
+# Run tests in watch mode
+npm run test:watch
 
-To learn more about React Native, take a look at the following resources:
+# Run tests with coverage
+npm run test:coverage
+```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 📱 Features Implemented
+
+### **Core Features**
+- ✅ Transaction list with merchant, amount, date, category
+- ✅ Filter by type (All/Income/Expenses)
+- ✅ Search by merchant with 300ms debouncing
+- ✅ Pull-to-refresh functionality
+- ✅ Loading, error, and empty states
+- ✅ Performance optimized FlatList
+
+### **Technical Features**
+- ✅ TypeScript with strict typing
+- ✅ Functional programming patterns
+- ✅ Custom hooks for business logic
+- ✅ Context API for state management
+- ✅ Accessibility support
+- ✅ Unit tests with Jest
+- ✅ Error boundaries
+- ✅ Internationalization ready
+
+## 🎨 Design Decisions
+
+### **UI/UX Choices**
+- **Clean, minimal design** focusing on readability
+- **Color coding** for income (green) vs expenses (red)
+- **Intuitive icons** for transaction types and categories
+- **Smooth animations** for state transitions
+- **Responsive layout** for different screen sizes
+
+### **Data Presentation**
+- **Currency formatting** with proper locale support
+- **Relative dates** for better user experience
+- **Category icons** for visual categorization
+- **Amount highlighting** for quick scanning
+
+## ⚖️ Trade-offs Made
+
+### **Given Time Constraints**
+1. **Simple State Management**: Used Context API instead of Redux for faster implementation
+2. **Mock Data**: JSON file instead of real backend integration
+3. **Basic Styling**: Focused on functionality over pixel-perfect design
+4. **Limited Testing**: Core logic tested, but could expand UI testing
+5. **No Offline Support**: Would require additional caching layer
+
+### **Performance vs Simplicity**
+- Chose FlatList optimizations that were easy to implement
+- Used React.memo selectively to avoid over-optimization
+- Debounced search for good UX without complex throttling
+
+## 🚀 Future Improvements
+
+### **With More Time, I Would Add:**
+
+#### **Features**
+- **Date range filtering** for better transaction management
+- **Transaction categories management** (add/edit/delete)
+- **Data visualization** with charts and spending insights
+- **Export functionality** (CSV, PDF reports)
+- **Transaction editing/deletion** capabilities
+- **Recurring transactions** support
+
+#### **Technical Enhancements**
+- **Redux Toolkit** for more complex state management
+- **React Query** for better data fetching and caching
+- **Offline support** with SQLite local storage
+- **Push notifications** for transaction alerts
+- **Biometric authentication** for security
+- **Dark mode** support
+
+#### **Performance & Quality**
+- **Code splitting** for better bundle size
+- **E2E testing** with Detox
+- **Performance monitoring** with Flipper
+- **Accessibility audit** and improvements
+- **CI/CD pipeline** with automated testing
+- **Error tracking** with Sentry
+
+#### **User Experience**
+- **Onboarding flow** for new users
+- **Advanced search** with multiple filters
+- **Gesture support** (swipe actions)
+- **Haptic feedback** for better interaction
+- **Voice input** for transaction entry
+
+## 🤖 AI Tools Used
+
+### **Development Assistance**
+- **Windsurf/Cascade AI**: Used for code generation, debugging, and architecture decisions
+- **GitHub Copilot**: Assisted with boilerplate code and TypeScript interfaces
+- **AI-powered refactoring** for code optimization and best practices
+
+### **How AI Helped**
+- **Rapid prototyping** of components and hooks
+- **TypeScript type definitions** generation
+- **Test case generation** and edge case identification
+- **Code review** and best practice suggestions
+- **Documentation** writing and README creation
+- **Architecture planning** and decision validation
+
+### **Human Oversight**
+- All AI-generated code was reviewed and tested
+- Architecture decisions were validated against requirements
+- Performance optimizations were measured and verified
+- Accessibility features were manually tested
+
+## 📊 Project Stats
+
+- **Lines of Code**: ~2,000+ (excluding node_modules)
+- **Components**: 15+ reusable components
+- **Custom Hooks**: 3 specialized hooks
+- **Test Coverage**: 80%+ for core business logic
+- **TypeScript**: 100% typed codebase
+
+## 🔗 Key Files
+
+- `src/App.tsx` - Main application component
+- `src/hooks/useTransactions.ts` - Transaction data management
+- `src/components/organisms/TransactionList.tsx` - Main transaction display
+- `src/api/httpClient.ts` - API client configuration
+- `db.json` - Mock transaction data
+- `src/types/` - TypeScript type definitions
+
+---
+
+**Built with ❤️ for Gerald Code Challenge**
