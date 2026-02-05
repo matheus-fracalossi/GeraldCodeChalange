@@ -32,7 +32,7 @@ const App = () => {
 const AppContent = () => {
   const safeAreaInsets = useSafeAreaInsets();
   const { t } = useTranslation();
-  const { transactions, loading, error } = useTransactions();
+  const { transactions, fetchState, error, hasNextPage, loadMore, refresh } = useTransactions();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState<TransactionFilter>('all');
@@ -86,7 +86,11 @@ const AppContent = () => {
 
       <TransactionList
         transactions={filteredTransactions}
-        loading={loading}
+        loading={fetchState === 'initial-fetch'}
+        loadingMore={fetchState === 'fetch-more'}
+        refreshing={fetchState === 'refreshing'}
+        onRefresh={refresh}
+        onLoadMore={loadMore}
         onTransactionPress={handleTransactionPress}
       />
     </Box>

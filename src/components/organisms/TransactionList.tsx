@@ -13,16 +13,20 @@ import TransactionItemSkeleton from '../atoms/TransactionItemSkeleton';
 interface TransactionListProps {
   transactions: Transaction[];
   loading: boolean;
+  loadingMore?: boolean;
   refreshing?: boolean;
   onRefresh?: () => void;
+  onLoadMore?: () => void;
   onTransactionPress?: (transaction: Transaction) => void;
 }
 
 export const TransactionList: React.FC<TransactionListProps> = ({
   transactions,
   loading,
+  loadingMore = false,
   refreshing = false,
   onRefresh,
+  onLoadMore,
   onTransactionPress,
 }) => {
   const { t } = useTranslation();
@@ -75,16 +79,16 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   );
 
   const renderFooter = useCallback(() => {
-    if (!loading || transactions.length === 0) {
-      return null;
+    if (loadingMore) {
+      return (
+        <Box className="px-4 py-4">
+          <TransactionItemSkeleton />
+          <TransactionItemSkeleton />
+        </Box>
+      );
     }
-    return (
-      <Box className="px-4">
-        <TransactionItemSkeleton />
-        <TransactionItemSkeleton />
-      </Box>
-    );
-  }, [loading, transactions.length]);
+    return null;
+  }, [loadingMore]);
 
   const keyExtractor = useCallback(
     (item: Transaction) => item.id,
@@ -109,8 +113,11 @@ export const TransactionList: React.FC<TransactionListProps> = ({
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         ) : undefined
       }
+      onEndReached={onLoadMore}
+      onEndReachedThreshold={0.1}
       stickySectionHeadersEnabled={false}
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: bottom }}
     />
   );
 };
