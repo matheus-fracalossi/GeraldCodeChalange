@@ -16,6 +16,7 @@
         "./src/*"
       ]
     },
-    "typeRoots": ["./src/types"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["jest", "node"]
   }
 }
