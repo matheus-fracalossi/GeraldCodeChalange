@@ -1,4 +1,4 @@
-import {en, pt, es} from '../i18n/locales';
+import {en, pt, es} from '@/i18n/locales';
 
 declare module 'i18next' {
     interface CustomTypeOptions {
