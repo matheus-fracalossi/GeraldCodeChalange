@@ -43,7 +43,7 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
     }
   }, [type, merchant]);
 
-  const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 300) => {
+  const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 350) => {
     // Clear existing timeout
     if (debounceTimeoutRef.current) {
       clearTimeout(debounceTimeoutRef.current);

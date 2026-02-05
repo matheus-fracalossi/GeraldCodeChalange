@@ -68,6 +68,10 @@ const TransactionScreen = () => {
         refreshing={fetchState === 'refreshing'}
         onRefresh={refresh}
         onLoadMore={loadMore}
+        onClearFilters={() => {
+          setSearchQuery('');
+          setFilterType('all');
+        }}
       />
     </Box>
   );

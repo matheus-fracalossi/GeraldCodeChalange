@@ -9,6 +9,7 @@ import { groupTransactionsByYear, TransactionSection } from '../../utils/dateUti
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TransactionListSkeleton from './TransactionListSkeleton';
 import TransactionItemSkeleton from '../atoms/TransactionItemSkeleton';
+import EmptyState from '../molecules/EmptyState';
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -18,6 +19,7 @@ interface TransactionListProps {
   onRefresh?: () => void;
   onLoadMore?: () => void;
   onTransactionPress?: (transaction: Transaction) => void;
+  onClearFilters?: () => void;
 }
 
 export const TransactionList: React.FC<TransactionListProps> = ({
@@ -27,6 +29,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   refreshing = false,
   onRefresh,
   onLoadMore,
+  onClearFilters,
 }) => {
   const { t } = useTranslation();
   const {bottom} = useSafeAreaInsets()
@@ -67,14 +70,8 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   );
 
   const renderEmpty = useCallback(
-    () => (
-      <Box className="items-center justify-center py-20">
-        <Text className="text-typography-500">
-          {t('transactions.noTransactions')}
-        </Text>
-      </Box>
-    ),
-    [t]
+    () => <EmptyState onClearFilters={onClearFilters} />,
+    [onClearFilters]
   );
 
   const renderFooter = useCallback(() => {
@@ -116,7 +113,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       onEndReachedThreshold={0.1}
       stickySectionHeadersEnabled={false}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: bottom }}
+      contentContainerStyle={{ paddingBottom: bottom, flexGrow: sections.length ? 0 : 1 }}
     />
   );
 };
