@@ -54,7 +54,7 @@ const badgeTextStyle = tva({
   },
   variants: {
     isTruncated: {
-      true: 'web:truncate',
+      true: '',
     },
     bold: {
       true: 'font-bold',
