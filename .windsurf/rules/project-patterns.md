@@ -39,6 +39,7 @@ type TransactionFilter = "all" | "income" | "expense";
 **Components:** `React.FC<Props>` functional components
 **Hooks:** `useTransactions`, `useDebounce`, `useTransactionFilters`
 **Naming:** PascalCase components, camelCase files/hooks, SCREAMING_SNAKE_CASE constants
+**i18n:** Always use `useTranslation` hook for all text content - no hardcoded strings
 
 ## UI Framework
 **Gluestack:** Box (layout), Text (typography), Button (actions), Input (search), FlatList (lists)
