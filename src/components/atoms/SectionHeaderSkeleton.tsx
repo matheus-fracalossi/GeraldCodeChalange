@@ -12,10 +12,8 @@ const SectionHeaderSkeleton: React.FC<SectionHeaderSkeletonProps> = ({
   return (
     <Box className="py-2 bg-white">
       {isYearHeader ? (
-        // Year header skeleton (larger)
         <SkeletonText _lines={1} className="h-6 w-16"  />
       ) : (
-        // Date header skeleton (smaller)
         <SkeletonText _lines={1} className="h-4 w-24"  />
       )}
     </Box>

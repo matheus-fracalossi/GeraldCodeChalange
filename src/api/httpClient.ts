@@ -1,6 +1,6 @@
 import { API_URL } from '@env';
 
-import { Transaction, TransactionFilter } from "../types/transaction";
+import { Transaction } from "../types/transaction";
 
 interface PaginationParams {
   page?: number;
@@ -20,28 +20,6 @@ interface PaginatedResponse<T> {
   items: number;
 }
 
-const get = async <T>(endpoint: string, params?: Record<string, string | number>): Promise<T> => {
-  let url = `${API_URL}${endpoint}`;
-  
-  if (params) {
-    const searchParams = new URLSearchParams();
-    Object.entries(params).forEach(([key, value]) => {
-      searchParams.append(key, value.toString());
-    });
-    url += `?${searchParams.toString()}`;
-  }
-
-  // Add 1 second delay to show skeleton loading state
-  await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
-
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`HTTP Error: ${response.status}`);
-  }
-
-  return response.json();
-};
 
 const getPaginatedWithHeaders = async <T>(
   endpoint: string, 
@@ -57,7 +35,6 @@ const getPaginatedWithHeaders = async <T>(
     url += `?${searchParams.toString()}`;
   }
 
-  // Add 1 second delay to show skeleton loading state
   await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
 
   const response = await fetch(url);
@@ -93,7 +70,6 @@ const getPaginated = async <T>(
   
   const { data, headers } = await getPaginatedWithHeaders<T>(endpoint, params);
   
-  // Parse pagination info from headers (json-server v0.17.4 format)
   const totalCount = parseInt(headers.get('X-Total-Count') || '0');
   const totalPages = Math.ceil(totalCount / perPage);
   
@@ -108,5 +84,5 @@ const getPaginated = async <T>(
   };
 };
 
-export const httpClient = { get, getPaginated };
+export const httpClient = { getPaginated };
 export type { PaginationParams, PaginatedResponse };

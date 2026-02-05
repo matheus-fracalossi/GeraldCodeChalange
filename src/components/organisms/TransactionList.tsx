@@ -18,7 +18,6 @@ interface TransactionListProps {
   refreshing?: boolean;
   onRefresh?: () => void;
   onLoadMore?: () => void;
-  onTransactionPress?: (transaction: Transaction) => void;
   onClearFilters?: () => void;
 }
 
@@ -100,7 +99,6 @@ export const TransactionList: React.FC<TransactionListProps> = ({
     []
   );
 
-  // Show skeleton during initial loading (when loading and no transactions)
   if (loading) {
     return <TransactionListSkeleton />;
   }

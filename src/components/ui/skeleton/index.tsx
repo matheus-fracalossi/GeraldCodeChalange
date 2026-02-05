@@ -35,24 +35,24 @@ const Skeleton = forwardRef<
   const pulseAnim = new Animated.Value(1);
   const customTimingFunction = Easing.bezier(0.4, 0, 0.6, 1);
   const fadeDuration = 0.6;
-  const animationDuration = (fadeDuration * 10000) / Number(speed); // Convert seconds to milliseconds
+  const animationDuration = (fadeDuration * 10000) / Number(speed);
 
   const pulse = Animated.sequence([
     Animated.timing(pulseAnim, {
-      toValue: 1, // Start with opacity 1
-      duration: animationDuration / 2, // Third of the animation duration
+      toValue: 1,
+      duration: animationDuration / 2,
       easing: customTimingFunction,
       useNativeDriver: Platform.OS !== 'web',
     }),
     Animated.timing(pulseAnim, {
       toValue: 0.75,
-      duration: animationDuration / 2, // Third of the animation duration
+      duration: animationDuration / 2,
       easing: customTimingFunction,
       useNativeDriver: Platform.OS !== 'web',
     }),
     Animated.timing(pulseAnim, {
       toValue: 1,
-      duration: animationDuration / 2, // Third of the animation duration
+      duration: animationDuration / 2,
       easing: customTimingFunction,
       useNativeDriver: Platform.OS !== 'web',
     }),

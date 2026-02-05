@@ -8,10 +8,6 @@ export interface TransactionSection {
   year?: string;
 }
 
-export interface YearSection {
-  year: string;
-  sections: TransactionSection[];
-}
 
 export const groupTransactionsByDate = (
   transactions: Transaction[]
@@ -61,7 +57,6 @@ export const groupTransactionsByYear = (
   const flatSections: TransactionSection[] = [];
   
   sortedYears.forEach((year) => {
-    // Add year header section
     flatSections.push({
       title: year,
       date: year,
@@ -70,7 +65,6 @@ export const groupTransactionsByYear = (
       isYearHeader: true,
     });
     
-    // Add date sections for this year
     const yearTransactions = yearGroups[year];
     const dateSections = groupTransactionsByDate(yearTransactions);
     

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import './global.css';
 import { StatusBar, useColorScheme } from 'react-native';
@@ -7,7 +7,6 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
 import { useTransactions } from './src/hooks/useTransactions';
 import { SearchInput } from './src/components/molecules/SearchInput';
 import { FilterBar } from './src/components/molecules/FilterBar';

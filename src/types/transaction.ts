@@ -1,40 +1,17 @@
 export interface Transaction {
   id: string;
   merchant: string;
-  amount: number; // positive=income, negative=expenses
-  date: string; // ISO 8601 format
+  amount: number;
+  date: string;
   category: string;
   type: "income" | "expense";
 }
 
 export type TransactionFilter = "all" | "income" | "expense";
 
-export interface ApiResponse<T> {
-  data: T;
-  success: boolean;
-  error?: string;
-}
-
-export interface TransactionListState {
-  transactions: Transaction[];
-  filteredTransactions: Transaction[];
-  filter: TransactionFilter;
-  searchQuery: string;
-  isLoading: boolean;
-  error: string | null;
-  isRefreshing: boolean;
-  pagination: {
-    currentPage: number;
-    totalPages: number;
-    totalItems: number;
-    hasNext: boolean;
-    hasPrev: boolean;
-  };
-}
 
 export interface TransactionItemProps {
   transaction: Transaction;
-  onPress?: (transaction: Transaction) => void;
 }
 
 export interface FilterBarProps {

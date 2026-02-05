@@ -41,14 +41,12 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
   }, [type, merchant]);
 
   const debouncedFetchTransactions = useCallback((page: number, fetchState: FetchState, delay: number = 300) => {
-    // Clear existing timeout
     setFetchState(fetchState);
     setError(null);
     if (debounceTimeoutRef.current) {
       clearTimeout(debounceTimeoutRef.current);
     }
 
-    // Set new timeout
     debounceTimeoutRef.current = setTimeout(() => {
       fetchTransactions(page, fetchState);
     }, delay);
@@ -58,7 +56,7 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
     if (hasNextPage && fetchState === null) {
       debouncedFetchTransactions(nextPageRef.current!, 'fetch-more');
     }
-  }, [fetchState, fetchTransactions]);
+  }, [hasNextPage, fetchState, debouncedFetchTransactions]);
 
   const refresh = useCallback(() => {
     nextPageRef.current = null;
@@ -69,7 +67,6 @@ export const useTransactions = ({type, merchant}: {type?: Transaction['type'], m
     debouncedFetchTransactions(1, 'initial-fetch');
   }, [debouncedFetchTransactions]);
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (debounceTimeoutRef.current) {
