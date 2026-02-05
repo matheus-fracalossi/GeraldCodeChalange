@@ -1,50 +1,50 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Box, Text } from '@/components/atoms';
-import { TransactionItemProps } from '../../types/transaction';
-import { getCategoryEmoji } from '../../utils/categoryEmoji';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Box, Text } from "@/components/atoms";
+import { TransactionItemProps } from "../../types/transaction";
+import { getCategoryEmoji } from "../../utils/categoryEmoji";
 
-export const TransactionItem = React.memo<TransactionItemProps>(({
-  transaction,
-}) => {
-  const { t } = useTranslation();
-  const isIncome = transaction.type === 'income';
-  const emoji = getCategoryEmoji(transaction.category);
-  const categories = t(`categories`, { returnObjects: true })
+export const TransactionItem = React.memo<TransactionItemProps>(
+  ({ transaction }) => {
+    const { t } = useTranslation();
+    const isIncome = transaction.type === "income";
+    const emoji = getCategoryEmoji(transaction.category);
+    const categories = t(`categories`, { returnObjects: true });
 
-  return (
-    <Box
-      className="flex-row items-center py-4 px-1 h-22"
-      accessibilityRole="button"
-      accessibilityLabel={t('transactions.transactionSummary', {
-        merchant: transaction.merchant,
-        date: transaction.date,
-        amount: transaction.amount,
-      })}
-    >
-      <Box className="w-12 h-12 rounded-lg bg-background-100 items-center justify-center mr-3">
-        <Text className="text-2xl">{emoji}</Text>
-      </Box>
-
-      <Box className="flex-1">
-        <Text className="text-base font-semibold text-typography-900">
-          {transaction.merchant}
-        </Text>
-        <Text className="text-sm text-typography-500">
-          {categories[transaction.category as keyof typeof categories]}
-        </Text>
-        <Text className="text-xs text-typography-400">
-          {t('transactions.transactionTime', { date: transaction.date })}
-        </Text>
-      </Box>
-
-      <Text
-        className={`text-base font-semibold ${
-          isIncome ? 'text-success-600' : 'text-error-600'
-        }`}
+    return (
+      <Box
+        className="flex-row items-center py-4 px-1 h-22"
+        accessibilityRole="button"
+        accessibilityLabel={t("transactions.transactionSummary", {
+          merchant: transaction.merchant,
+          date: transaction.date,
+          amount: transaction.amount,
+        })}
       >
-        {t('transactions.transactionAmount', { amount: transaction.amount })}
-      </Text>
-    </Box>
-  );
-});
+        <Box className="w-12 h-12 rounded-lg bg-background-100 items-center justify-center mr-3">
+          <Text className="text-2xl">{emoji}</Text>
+        </Box>
+
+        <Box className="flex-1">
+          <Text className="text-base font-semibold text-typography-900">
+            {transaction.merchant}
+          </Text>
+          <Text className="text-sm text-typography-500">
+            {categories[transaction.category as keyof typeof categories]}
+          </Text>
+          <Text className="text-xs text-typography-400">
+            {t("transactions.transactionTime", { date: transaction.date })}
+          </Text>
+        </Box>
+
+        <Text
+          className={`text-base font-semibold ${
+            isIncome ? "text-success-600" : "text-error-600"
+          }`}
+        >
+          {t("transactions.transactionAmount", { amount: transaction.amount })}
+        </Text>
+      </Box>
+    );
+  },
+);

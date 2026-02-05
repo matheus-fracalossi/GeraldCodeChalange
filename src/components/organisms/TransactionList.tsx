@@ -1,14 +1,17 @@
-import React, { useMemo, useCallback } from 'react';
-import { SectionList, RefreshControl } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { Box, Text } from '@/components/atoms';
-import { Transaction } from '../../types/transaction';
-import { TransactionItem } from '../molecules/TransactionItem';
-import { groupTransactionsByYear, TransactionSection } from '../../utils/dateUtils';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import TransactionListSkeleton from './TransactionListSkeleton';
-import TransactionItemSkeleton from '../atoms/TransactionItemSkeleton';
-import EmptyState from '../molecules/EmptyState';
+import React, { useMemo, useCallback } from "react";
+import { SectionList, RefreshControl } from "react-native";
+import { useTranslation } from "react-i18next";
+import { Box, Text } from "@/components/atoms";
+import { Transaction } from "../../types/transaction";
+import { TransactionItem } from "../molecules/TransactionItem";
+import {
+  groupTransactionsByYear,
+  TransactionSection,
+} from "../../utils/dateUtils";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import TransactionListSkeleton from "./TransactionListSkeleton";
+import TransactionItemSkeleton from "../atoms/TransactionItemSkeleton";
+import EmptyState from "../molecules/EmptyState";
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -30,11 +33,11 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   onClearFilters,
 }) => {
   const { t } = useTranslation();
-  const {bottom} = useSafeAreaInsets()
+  const { bottom } = useSafeAreaInsets();
 
   const sections = useMemo(
     () => groupTransactionsByYear(transactions),
-    [transactions]
+    [transactions],
   );
 
   const renderSectionHeader = useCallback(
@@ -48,23 +51,21 @@ export const TransactionList: React.FC<TransactionListProps> = ({
           </Box>
         );
       }
-      
+
       return (
         <Box className="py-2">
           <Text className="text-xs font-semibold text-typography-500 tracking-wide">
-            {t('transactions.sectionDate', { date: section.date })}
+            {t("transactions.sectionDate", { date: section.date })}
           </Text>
         </Box>
       );
     },
-    [t]
+    [t],
   );
 
   const renderItem = useCallback(
-    ({ item }: { item: Transaction }) => (
-      <TransactionItem transaction={item} />
-    ),
-    []
+    ({ item }: { item: Transaction }) => <TransactionItem transaction={item} />,
+    [],
   );
 
   const renderEmpty = useCallback(
@@ -74,11 +75,11 @@ export const TransactionList: React.FC<TransactionListProps> = ({
         descriptionKey="transactions.noTransactionsDescription"
         buttonTextKey={onClearFilters ? "transactions.clearFilters" : undefined}
         onButtonPress={onClearFilters}
-        buttonAccessibilityLabel={t('transactions.clearFiltersAccessibility')}
-        buttonAccessibilityHint={t('transactions.clearFiltersHint')}
+        buttonAccessibilityLabel={t("transactions.clearFiltersAccessibility")}
+        buttonAccessibilityHint={t("transactions.clearFiltersHint")}
       />
     ),
-    [onClearFilters, t]
+    [onClearFilters, t],
   );
 
   const renderFooter = useCallback(() => {
@@ -93,7 +94,8 @@ export const TransactionList: React.FC<TransactionListProps> = ({
     return null;
   }, [loadingMore]);
 
-  const keyExtractor = (item: Transaction, index: number) => `${item.id}-${index}`;
+  const keyExtractor = (item: Transaction, index: number) =>
+    `${item.id}-${index}`;
 
   if (loading) {
     return <TransactionListSkeleton />;
@@ -116,11 +118,12 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       onEndReachedThreshold={0.1}
       stickySectionHeadersEnabled={false}
       showsVerticalScrollIndicator={false}
-      keyboardDismissMode='interactive'
-      contentContainerStyle={{ paddingBottom: bottom, flexGrow: sections.length ? 0 : 1 }}
-      getItemLayout={(_, index) => (
-        {length: 88, offset: 88 * index, index}
-      )}
+      keyboardDismissMode="interactive"
+      contentContainerStyle={{
+        paddingBottom: bottom,
+        flexGrow: sections.length ? 0 : 1,
+      }}
+      getItemLayout={(_, index) => ({ length: 88, offset: 88 * index, index })}
     />
   );
 };

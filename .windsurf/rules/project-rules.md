@@ -5,10 +5,13 @@ trigger: always_on
 # Project Patterns
 
 ## Structure
+
 **UI:**
+
 - `components/ui` - Button, Text, Input (Gluestack)
 
 **Folders:**
+
 ```
 src/
 ├── components/{atoms,molecules,organisms}/
@@ -16,6 +19,7 @@ src/
 ```
 
 ## Types
+
 ```tsx
 interface Transaction {
   id: string;
@@ -36,6 +40,7 @@ type TransactionFilter = "all" | "income" | "expense";
 ```
 
 ## Patterns
+
 **FUNCTIONAL PROGRAMMING MANDATORY:** Always use functional programming paradigms
 **Components:** Arrow function components only - `const Component = () => {}`
 **Hooks:** Arrow functions - `const useTransactions = () => {}`, `const useDebounce = () => {}`
@@ -45,7 +50,9 @@ type TransactionFilter = "all" | "income" | "expense";
 **i18n:** Always use `useTranslation` hook for all text content - no hardcoded strings
 
 ## Functional Programming Rules
+
 **MANDATORY - NO EXCEPTIONS:**
+
 - Arrow functions for ALL functions: `const myFunction = () => {}`
 - No `function` keyword allowed
 - Immutable data patterns with spread operators
@@ -55,31 +62,38 @@ type TransactionFilter = "all" | "income" | "expense";
 - Functional composition over imperative code
 
 ## UI Framework
+
 **Gluestack:** Box (layout), Text (typography), Button (actions), Input (search), FlatList (lists)
 
 ## Accessibility
+
 - `accessibilityLabel` on interactive elements
 - `accessibilityRole` for semantic meaning
 - Screen reader friendly formatting
 
 ## Performance
+
 - `React.memo` for expensive components
 - `useMemo`/`useCallback` for optimization
 - FlatList `keyExtractor` and `getItemLayout`
 - 300ms debounced search
 
 ## State
+
 Context API with reducers:
+
 ```tsx
 const TransactionContext = createContext();
 const useTransactionContext = () => useContext(TransactionContext);
 ```
 
 ## Git Conventions
+
 **ALWAYS USE GIT CONVENTIONS - MANDATORY**
 **Commits:** `type(scope): short direct description` - feat, fix, docs, style, refactor, test, chore
+
 - Keep commit messages short and direct
 - Use imperative mood: "add feature" not "added feature"
 - Max 50 characters for subject line
-**Branches:** `feature/description`, `bugfix/description`, `hotfix/description`, `release/version`
-**MCP:** Always use git MCP tools for operations
+  **Branches:** `feature/description`, `bugfix/description`, `hotfix/description`, `release/version`
+  **MCP:** Always use git MCP tools for operations

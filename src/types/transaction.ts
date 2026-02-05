@@ -9,7 +9,6 @@ export interface Transaction {
 
 export type TransactionFilter = "all" | "income" | "expense";
 
-
 export interface TransactionItemProps {
   transaction: Transaction;
 }

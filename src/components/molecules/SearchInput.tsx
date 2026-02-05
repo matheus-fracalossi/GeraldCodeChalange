@@ -1,7 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Input, InputField, InputSlot, Text } from '@/components/atoms';
-import { SearchInputProps } from '../../types/transaction';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Input, InputField, InputSlot, Text } from "@/components/atoms";
+import { SearchInputProps } from "../../types/transaction";
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   value,
@@ -22,9 +22,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       <InputField
         value={value}
         onChangeText={onChangeText}
-        placeholder={placeholder || t('transactions.searchPlaceholder')}
+        placeholder={placeholder || t("transactions.searchPlaceholder")}
         className="text-typography-900"
-        accessibilityLabel={t('transactions.searchPlaceholder')}
+        accessibilityLabel={t("transactions.searchPlaceholder")}
       />
     </Input>
   );

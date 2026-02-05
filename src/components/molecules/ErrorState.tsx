@@ -1,6 +1,6 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import EmptyState from './EmptyState';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import EmptyState from "./EmptyState";
 
 interface ErrorStateProps {
   onRetry?: () => void;
@@ -9,25 +9,25 @@ interface ErrorStateProps {
   customEmoji?: string;
 }
 
-const ErrorState: React.FC<ErrorStateProps> = ({ 
+const ErrorState: React.FC<ErrorStateProps> = ({
   onRetry,
   customTitle,
   customDescription,
-  customEmoji
+  customEmoji,
 }) => {
   const { t } = useTranslation();
 
   return (
     <EmptyState
-      emoji={customEmoji || '⚠️'}
-      titleKey={customTitle ? undefined : 'errors.somethingWentWrong'}
+      emoji={customEmoji || "⚠️"}
+      titleKey={customTitle ? undefined : "errors.somethingWentWrong"}
       title={customTitle}
-      descriptionKey={customDescription ? undefined : 'errors.errorDescription'}
+      descriptionKey={customDescription ? undefined : "errors.errorDescription"}
       description={customDescription}
-      buttonTextKey={onRetry ? 'errors.tryAgain' : undefined}
+      buttonTextKey={onRetry ? "errors.tryAgain" : undefined}
       onButtonPress={onRetry}
-      buttonAccessibilityLabel={t('errors.retryAccessibility' as any)}
-      buttonAccessibilityHint={t('errors.retryHint' as any)}
+      buttonAccessibilityLabel={t("errors.retryAccessibility" as any)}
+      buttonAccessibilityHint={t("errors.retryHint" as any)}
     />
   );
 };

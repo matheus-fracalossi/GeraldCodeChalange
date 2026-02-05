@@ -1,19 +1,19 @@
-import React from 'react';
-import { Box } from './box';
-import { Skeleton, SkeletonText } from './skeleton';
+import React from "react";
+import { Box } from "./box";
+import { Skeleton, SkeletonText } from "./skeleton";
 
 const TransactionItemSkeleton: React.FC = () => {
   return (
     <Box className="flex-row py-4 px-1">
-      <Skeleton variant="rounded" className="w-12 h-12 mr-3"  />
+      <Skeleton variant="rounded" className="w-12 h-12 mr-3" />
 
       <Box className="flex-1 gap-1">
-        <SkeletonText _lines={2} gap={1} className="h-3 w-2/6"  />
-        <SkeletonText _lines={1} gap={1} className="h-3 w-1/6"  />
+        <SkeletonText _lines={2} gap={1} className="h-3 w-2/6" />
+        <SkeletonText _lines={1} gap={1} className="h-3 w-1/6" />
       </Box>
 
       <Box>
-        <SkeletonText _lines={1} gap={1} className="h-3 w-10"  />
+        <SkeletonText _lines={1} gap={1} className="h-3 w-10" />
       </Box>
     </Box>
   );

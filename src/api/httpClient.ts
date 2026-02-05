@@ -1,4 +1,4 @@
-import { API_URL } from '@env';
+import { API_URL } from "@env";
 
 import { Transaction } from "../types/transaction";
 
@@ -20,13 +20,12 @@ interface PaginatedResponse<T> {
   items: number;
 }
 
-
 const getPaginatedWithHeaders = async <T>(
-  endpoint: string, 
-  params?: Record<string, string | number>
-): Promise<{ data: T[], headers: Headers }> => {
+  endpoint: string,
+  params?: Record<string, string | number>,
+): Promise<{ data: T[]; headers: Headers }> => {
   let url = `${API_URL}${endpoint}`;
-  
+
   if (params) {
     const searchParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
@@ -35,7 +34,7 @@ const getPaginatedWithHeaders = async <T>(
     url += `?${searchParams.toString()}`;
   }
 
-  await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
+  await new Promise((resolve) => setTimeout(() => resolve(undefined), 1000));
 
   const response = await fetch(url);
 
@@ -48,31 +47,31 @@ const getPaginatedWithHeaders = async <T>(
 };
 
 const getPaginated = async <T>(
-  endpoint: string, 
-  { page = 1, perPage = 10, sort, type, merchant }: PaginationParams = {}
+  endpoint: string,
+  { page = 1, perPage = 10, sort, type, merchant }: PaginationParams = {},
 ): Promise<PaginatedResponse<T>> => {
-  const params: Record<string, string | number> = { 
-    _page: page, 
+  const params: Record<string, string | number> = {
+    _page: page,
     _per_page: perPage,
   };
-  
+
   if (sort !== undefined) {
     params._sort = sort;
   }
-  
+
   if (type !== undefined) {
     params.type = type;
   }
-  
+
   if (merchant !== undefined) {
     params.merchant_like = merchant;
   }
-  
+
   const { data, headers } = await getPaginatedWithHeaders<T>(endpoint, params);
-  
-  const totalCount = parseInt(headers.get('X-Total-Count') || '0', 10);
+
+  const totalCount = parseInt(headers.get("X-Total-Count") || "0", 10);
   const totalPages = Math.ceil(totalCount / perPage);
-  
+
   return {
     data,
     first: 1,
@@ -80,7 +79,7 @@ const getPaginated = async <T>(
     next: page < totalPages ? page + 1 : null,
     last: totalPages,
     pages: totalPages,
-    items: totalCount
+    items: totalCount,
   };
 };
 

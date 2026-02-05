@@ -1,18 +1,18 @@
-import React, { useCallback } from 'react';
-import { FlatList } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { Button, ButtonText, Box } from '@/components/atoms';
-import { FilterBarProps, TransactionFilter } from '../../types/transaction';
+import React, { useCallback } from "react";
+import { FlatList } from "react-native";
+import { useTranslation } from "react-i18next";
+import { Button, ButtonText, Box } from "@/components/atoms";
+import { FilterBarProps, TransactionFilter } from "../../types/transaction";
 
 interface FilterOption {
   key: TransactionFilter;
-  labelKey: 'common.all' | 'transactions.income' | 'transactions.expenses';
+  labelKey: "common.all" | "transactions.income" | "transactions.expenses";
 }
 
 const FILTER_OPTIONS: FilterOption[] = [
-  { key: 'all', labelKey: 'common.all' },
-  { key: 'income', labelKey: 'transactions.income' },
-  { key: 'expense', labelKey: 'transactions.expenses' },
+  { key: "all", labelKey: "common.all" },
+  { key: "income", labelKey: "transactions.income" },
+  { key: "expense", labelKey: "transactions.expenses" },
 ];
 
 export const FilterBar: React.FC<FilterBarProps> = ({
@@ -26,8 +26,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       const isActive = currentFilter === item.key;
       return (
         <Button
-          variant={isActive ? 'solid' : 'outline'}
-          action={isActive ? 'primary' : 'secondary'}
+          variant={isActive ? "solid" : "outline"}
+          action={isActive ? "primary" : "secondary"}
           size="sm"
           className={`rounded-full px-5 mr-2`}
           onPress={() => onFilterChange(item.key)}
@@ -35,14 +35,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           accessibilityRole="button"
         >
           <ButtonText
-            className={isActive ? 'text-white' : 'text-typography-700'}
+            className={isActive ? "text-white" : "text-typography-700"}
           >
             {t(item.labelKey)}
           </ButtonText>
         </Button>
       );
     },
-    [currentFilter, onFilterChange, t]
+    [currentFilter, onFilterChange, t],
   );
 
   const keyExtractor = (item: FilterOption) => item.key;

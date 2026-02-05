@@ -1,8 +1,8 @@
-import React from 'react';
-import { ScrollView } from 'react-native';
-import { Box } from '@/components/atoms';
-import TransactionItemSkeleton from '../atoms/TransactionItemSkeleton';
-import SectionHeaderSkeleton from '../atoms/SectionHeaderSkeleton';
+import React from "react";
+import { ScrollView } from "react-native";
+import { Box } from "@/components/atoms";
+import TransactionItemSkeleton from "../atoms/TransactionItemSkeleton";
+import SectionHeaderSkeleton from "../atoms/SectionHeaderSkeleton";
 
 const TransactionListSkeleton: React.FC = () => {
   return (
