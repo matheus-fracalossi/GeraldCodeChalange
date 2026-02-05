@@ -13,7 +13,7 @@ const formatValue: FormatFunction = (value, format, lng): string => {
             return new Intl.NumberFormat(lng, { 
                 style: 'currency', 
                 currency: getCurrencies()[0] 
-            }).format(value);
+            }).format(value / 100);
         
         case 'date':
             return new Intl.DateTimeFormat(lng, {

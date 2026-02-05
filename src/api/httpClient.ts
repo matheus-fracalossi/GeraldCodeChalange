@@ -1,52 +1,49 @@
 import { API_URL } from '@env';
 
-export enum ApiEndpoints {
-  TRANSACTIONS = '/transactions',
-  TRANSACTIONS_SEARCH = '/transactions/search',
+interface PaginationParams {
+  page?: number;
+  perPage?: number;
 }
 
-interface RequestConfig {
-  headers?: Record<string, string>;
-  timeout?: number;
+interface PaginatedResponse<T> {
+  data: T[];
+  first: number;
+  prev: number | null;
+  next: number | null;
+  last: number;
+  pages: number;
+  items: number;
 }
 
-interface ApiResponse<T> {
-  data: T;
-  status: number;
-  statusText: string;
-}
-
-const makeRequest = async <T>(
-  endpoint: ApiEndpoints,
-  method: 'GET' = 'GET',
-  config: RequestConfig = {}
-): Promise<ApiResponse<T>> => {
-  const { headers = {} } = config;
-  const url = `${API_URL}${endpoint}`;
-
-  const response = await fetch(url, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+const get = async <T>(endpoint: string, params?: Record<string, string | number>): Promise<T> => {
+  let url = `${API_URL}${endpoint}`;
+  
+  if (params) {
+    const searchParams = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      searchParams.append(key, value.toString());
+    });
+    url += `?${searchParams.toString()}`;
   }
 
-  const data = await response.json();
-  
-  return {
-    data,
-    status: response.status,
-    statusText: response.statusText,
-  };
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`HTTP Error: ${response.status}`);
+  }
+
+  return response.json();
 };
 
-const get = <T>(endpoint: ApiEndpoints, config?: RequestConfig): Promise<ApiResponse<T>> =>
-  makeRequest<T>(endpoint, 'GET', config);
+const getPaginated = async <T>(
+  endpoint: string, 
+  { page = 1, perPage = 10 }: PaginationParams = {}
+): Promise<PaginatedResponse<T>> => {
+  const params = { _page: page, _per_page: perPage };
+  const data = await get<PaginatedResponse<T>>(endpoint, params);
+  
+  return data;
+};
 
-export const httpClient = { get };
-export default httpClient;
+export const httpClient = { get, getPaginated };
+export type { PaginationParams, PaginatedResponse };

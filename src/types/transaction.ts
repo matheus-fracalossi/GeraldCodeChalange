@@ -23,6 +23,13 @@ export interface TransactionListState {
   isLoading: boolean;
   error: string | null;
   isRefreshing: boolean;
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+  };
 }
 
 export interface TransactionItemProps {
